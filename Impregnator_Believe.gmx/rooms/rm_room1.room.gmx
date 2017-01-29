@@ -2,7 +2,7 @@
 <room>
   <caption></caption>
   <width>480</width>
-  <height>654</height>
+  <height>854</height>
   <vsnap>32</vsnap>
   <hsnap>32</hsnap>
   <isometric>0</isometric>
@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>16711935</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>//instance_create(0,0,controller_level1);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -52,6 +52,10 @@
   </views>
   <instances>
     <instance objName="obj_sperm" x="224" y="192" name="inst_95171674" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_defensive_cell" x="96" y="32" name="inst_0B8124F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_defensive_cell" x="288" y="32" name="inst_679003A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_defensive_cell" x="384" y="160" name="inst_27FE7F57" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_defensive_cell" x="128" y="320" name="inst_9F6E826D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
