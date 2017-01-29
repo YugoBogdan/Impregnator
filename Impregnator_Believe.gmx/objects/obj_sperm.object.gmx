@@ -33,6 +33,8 @@ device_tilt_y_min = 0.025;
 device_tilt_x_max = 0.5;
 device_tilt_y_max = 0.5;
 
+image_speed = 0.5;
+
 if(!instance_exists(obj_tail)){
     tail = instance_create(x,y,obj_tail)
 }

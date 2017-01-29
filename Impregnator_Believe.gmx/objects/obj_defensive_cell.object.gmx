@@ -3,7 +3,7 @@
   <spriteName>spr_defensive_cell</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>spd = 4;
+
+image_speed = 0.5;
 </string>
           </argument>
         </arguments>
@@ -48,7 +50,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//instance_create(irandom(room_width),-24,obj_defensive_cell);
+            <string>instance_create(irandom(room_width),-24,obj_defensive_cell);
 </string>
           </argument>
         </arguments>
@@ -71,11 +73,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//y += spd;
+            <string>y += spd;
 
-/*if (y &gt; room_height+24){
+if (y &gt; room_height+24){
     instance_destroy();
-}*/
+}
 </string>
           </argument>
         </arguments>
@@ -98,9 +100,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if(place_meeting(x,y,obj_sperm)){
+            <string>draw_self();
+
+if(place_meeting(x,y,obj_sperm)){
     scr_damage();
-}*/
+}
 </string>
           </argument>
         </arguments>

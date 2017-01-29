@@ -17,6 +17,10 @@
   <scripts name="scripts">
     <script>scripts\scr_damage.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_arial_16</font>
+    <font>fonts\fnt_arial_12</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_sperm</object>
     <object>objects\obj_tail</object>
