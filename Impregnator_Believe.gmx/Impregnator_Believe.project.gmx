@@ -16,6 +16,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_damage.gml</script>
+    <script>scripts\scr_enemy_create.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
