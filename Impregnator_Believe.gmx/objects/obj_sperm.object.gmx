@@ -27,16 +27,28 @@
             <kind>1</kind>
             <string>///initialize
 
-spd_factor = 10;
+spd_factor = 35;
 device_tilt_x_min = 0.025;
 device_tilt_y_min = 0.025;
-device_tilt_x_max = 0.5;
-device_tilt_y_max = 0.5;
+device_tilt_x_max = 0.3;
+device_tilt_y_max = 0.3;
 
-image_speed = 0.5;
+image_speed = 0.25;
 
 if(!instance_exists(obj_tail)){
     tail = instance_create(x,y,obj_tail)
+}
+if(!instance_exists(obj_button_left)){
+    left_button = instance_create(x-64,y-64,obj_button_left)
+}
+if(!instance_exists(obj_button_right)){
+    right_button = instance_create(x+64,y-64,obj_button_right)
+}
+if(!instance_exists(obj_button_left_swipe)){
+    left_button_swipe = instance_create(x-64,y+64,obj_button_left_swipe)
+}
+if(!instance_exists(obj_button_right_swipe)){
+    right_button_swipe = instance_create(x+64,y+64,obj_button_right_swipe)
 }
 </string>
           </argument>
@@ -129,7 +141,9 @@ if(x_is_positive &amp;&amp; !y_is_positive){
     theta = radtodeg(arctan(abs(x_spd)/abs(y_spd))) +270;
 }
 
+image_angle = theta;
 tail.image_angle = theta;
+
 
 /*
 show_debug_message("device_get_tilt_x:");
