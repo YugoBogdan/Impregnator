@@ -35,6 +35,11 @@ device_tilt_y_max = 0.3;
 
 image_speed = 0.25;
 
+state = 'normal';
+//list of states:
+//normal
+//immobile
+
 if(!instance_exists(obj_tail)){
     tail = instance_create(x,y,obj_tail)
 }
@@ -99,13 +104,19 @@ if (abs(device_tilt_y) &lt; device_tilt_y_min){
     y_spd = spd_factor * device_tilt_y_max *sign(device_tilt_y);
 }
 
-x += x_spd;
-y += y_spd;
+//change position
+if (state == 'normal'){
+    x += x_spd;
+    y += y_spd;
+}
+
+//pitagorina teorema
+spd = sqrt(sqr(x_spd)+sqr(y_spd));
+//spd treba da racuna iako ne moze da se krece, posto ce se koristiti u funkcijama koprcanja
 
 //tail animation
 tail.x = x;
 tail.y = y;
-
 
 if (sign(x_spd) || sign(x_spd) == 0){
     var x_is_positive = 1;
@@ -143,16 +154,6 @@ if(x_is_positive &amp;&amp; !y_is_positive){
 
 image_angle = theta;
 tail.image_angle = theta;
-
-
-/*
-show_debug_message("device_get_tilt_x:");
-show_debug_message(device_get_tilt_x());
-show_debug_message("device_get_tilt_y:");
-show_debug_message(device_get_tilt_y());
-show_debug_message("theta:");
-show_debug_message(theta);
-*/
 </string>
           </argument>
         </arguments>

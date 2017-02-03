@@ -87,7 +87,7 @@ scr_enemy_create(irandom(room_width),-spr_defensive_cell.sprite_height/2,obj_def
 
 scr_enemy_create(irandom(room_width),-spr_defensive_cell.sprite_height/2,obj_defensive_cell,irandom_range(-2,2),4);
 
-scr_enemy_create(irandom(room_width),-spr_defensive_cell.sprite_height/2,obj_sun,irandom_range(-1,1),3);
+scr_enemy_create(irandom(room_width),-spr_sun.sprite_height/2,obj_sun,irandom_range(-1,1),3);
 
 </string>
           </argument>
@@ -114,9 +114,9 @@ scr_enemy_create(irandom(room_width),-spr_defensive_cell.sprite_height/2,obj_sun
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///create defensive cell top
+            <string>///create big top
 
-scr_enemy_create(irandom(room_width),-spr_defensive_cell.sprite_height/2,obj_defensive_cell,irandom_range(-2,2),4);
+scr_enemy_create(irandom(room_width),-spr_enemy_big.sprite_height/2,obj_enemy_big,0,1);
 
 </string>
           </argument>

@@ -34,6 +34,39 @@ show_debug_message(input_screen.input_tap_pressed);
 show_debug_message("input_tap");
 show_debug_message(input_screen.input_tap);
 */
+
+//proba_device_mouse1 = device_mouse_check_button(0,mb_left);
+//proba_device_mouse2 = device_mouse_check_button(1,mb_left);
+
+/*show_debug_message("proba_device_mouse1");
+show_debug_message(proba_device_mouse1);
+
+show_debug_message("proba_device_mouse2");
+show_debug_message(proba_device_mouse2);*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///immersion stop
+immersion_stop();
 </string>
           </argument>
         </arguments>

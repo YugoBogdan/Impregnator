@@ -17,6 +17,9 @@
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_input_screen</sprite>
     <sprite>sprites\spr_sun</sprite>
+    <sprite>sprites\spr_enemy_big</sprite>
+    <sprite>sprites\spr_enemy_big_damaged</sprite>
+    <sprite>sprites\spr_enemy_trosperm</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
@@ -27,6 +30,7 @@
     <script>scripts\scr_enemy_create.gml</script>
     <script>scripts\scr_collect.gml</script>
     <script>scripts\scr_immersion.gml</script>
+    <script>scripts\scr_generate_text.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -36,6 +40,8 @@
     <object>objects\obj_sperm</object>
     <object>objects\obj_tail</object>
     <object>objects\obj_defensive_cell</object>
+    <object>objects\obj_enemy_trosperm</object>
+    <object>objects\obj_enemy_big</object>
     <object>objects\obj_defensive_cell_eyes</object>
     <object>objects\obj_sun</object>
     <object>objects\obj_text</object>
@@ -54,6 +60,7 @@
   </timelines>
   <rooms name="rooms">
     <room>rooms\rm_room1</room>
+    <room>rooms\rm_boss</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

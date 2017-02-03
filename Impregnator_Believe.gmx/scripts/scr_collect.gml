@@ -1,9 +1,9 @@
-///scr_collect(text,points)
+///scr_collect(text,points,duration)
 text = argument[0];
 points = argument[1];
+duration = argument[2];
 
-draw_set_font(fnt_arial_12);
-draw_text(x,y-75,text);
-draw_text(x,y-50,"Gathered:" + string(points));
-
+scr_generate_text(text,points,duration);
 scr_immersion(8,15);
+
+

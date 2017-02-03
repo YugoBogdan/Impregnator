@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>immersion_stop();
-instance_destroy();
+            <string>///stop immersion and self destroy
+immersion_stop();
+//instance_destroy();
 </string>
           </argument>
         </arguments>

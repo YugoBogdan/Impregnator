@@ -34,6 +34,7 @@ timeline_speed = 1;
 timeline_loop = true;
 
 global.score = 0;
+
 defensive_cells_limit = 20;
 
 if(!instance_exists(input_screen)){
