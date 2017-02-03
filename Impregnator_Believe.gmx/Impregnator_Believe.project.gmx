@@ -54,6 +54,7 @@
     <object>objects\controller_level1</object>
     <object>objects\input_screen</object>
     <object>objects\obj_immersion</object>
+    <object>objects\obj_enemies_parent</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\tl_level1</timeline>
