@@ -37,24 +37,34 @@
     <font>fonts\fnt_arial_12</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_sperm</object>
-    <object>objects\obj_tail</object>
-    <object>objects\obj_defensive_cell</object>
-    <object>objects\obj_enemy_trosperm</object>
-    <object>objects\obj_enemy_big</object>
-    <object>objects\obj_defensive_cell_eyes</object>
-    <object>objects\obj_sun</object>
     <object>objects\obj_text</object>
     <object>objects\obj_button_left</object>
     <object>objects\obj_button_right</object>
     <object>objects\obj_button_left_swipe</object>
     <object>objects\obj_button_right_swipe</object>
     <object>objects\finger</object>
-    <object>objects\game_ctrl</object>
-    <object>objects\controller_level1</object>
     <object>objects\input_screen</object>
     <object>objects\obj_immersion</object>
-    <object>objects\obj_enemies_parent</object>
+    <objects name="Enemies">
+      <object>objects\obj_enemies_parent</object>
+      <object>objects\obj_defensive_cell</object>
+      <object>objects\obj_enemy_trosperm</object>
+      <object>objects\obj_enemy_big</object>
+    </objects>
+    <objects name="Effects">
+      <object>objects\obj_defensive_cell_eyes</object>
+    </objects>
+    <objects name="Controllers">
+      <object>objects\controller_level1</object>
+      <object>objects\game_ctrl</object>
+    </objects>
+    <objects name="Player">
+      <object>objects\obj_sperm</object>
+      <object>objects\obj_tail</object>
+    </objects>
+    <objects name="Powerups">
+      <object>objects\obj_sun</object>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\tl_level1</timeline>
