@@ -3,5 +3,3 @@
 enemy = instance_create(argument[0],argument[1],argument[2]);
 enemy.x_spd = argument[3];
 enemy.y_spd = argument[4];
-
-return enemy;

@@ -55,6 +55,9 @@ if(!instance_exists(obj_button_left_swipe)){
 if(!instance_exists(obj_button_right_swipe)){
     right_button_swipe = instance_create(x+64,y+64,obj_button_right_swipe)
 }
+
+naziv_objekta = object_get_name(id);
+show_debug_message(naziv_objekta);
 </string>
           </argument>
         </arguments>

@@ -34,6 +34,8 @@ timeline_speed = 1;
 timeline_loop = true;
 
 global.score = 0;
+checkpoint_total = 0;
+checkpoint_counter = 0;
 
 defensive_cells_limit = 20;
 

@@ -1,5 +1,6 @@
 ///scr_immersion(effect,duration)
 
+
 effect = argument[0];
 duration = argument[1];
 

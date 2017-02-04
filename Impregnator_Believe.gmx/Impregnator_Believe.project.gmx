@@ -20,6 +20,7 @@
     <sprite>sprites\spr_enemy_big</sprite>
     <sprite>sprites\spr_enemy_big_damaged</sprite>
     <sprite>sprites\spr_enemy_trosperm</sprite>
+    <sprite>sprites\spr_checkpoint</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
@@ -37,14 +38,12 @@
     <font>fonts\fnt_arial_12</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_text</object>
     <object>objects\obj_button_left</object>
     <object>objects\obj_button_right</object>
     <object>objects\obj_button_left_swipe</object>
     <object>objects\obj_button_right_swipe</object>
     <object>objects\finger</object>
     <object>objects\input_screen</object>
-    <object>objects\obj_immersion</object>
     <objects name="Enemies">
       <object>objects\obj_enemies_parent</object>
       <object>objects\obj_defensive_cell</object>
@@ -53,6 +52,8 @@
     </objects>
     <objects name="Effects">
       <object>objects\obj_defensive_cell_eyes</object>
+      <object>objects\obj_immersion</object>
+      <object>objects\obj_text</object>
     </objects>
     <objects name="Controllers">
       <object>objects\controller_level1</object>
@@ -64,6 +65,7 @@
     </objects>
     <objects name="Powerups">
       <object>objects\obj_sun</object>
+      <object>objects\obj_checkpoint</object>
     </objects>
   </objects>
   <timelines name="timelines">
