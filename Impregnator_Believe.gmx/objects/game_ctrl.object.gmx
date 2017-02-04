@@ -29,6 +29,7 @@
 
 
 //ukoliko je true: dupli tap ce smatrati za reight_mouse_button, tako da ce ponistiti 2 left_mouse_button click-a
+device_mouse_dbclick_enable(false);
 </string>
           </argument>
         </arguments>
