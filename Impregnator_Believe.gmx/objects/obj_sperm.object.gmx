@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>///initialize
 
-spd_factor = 35;
+spd_factor_base = 50;
+spd_factor = spd_factor_base;
 device_tilt_x_min = 0.025;
 device_tilt_y_min = 0.025;
 device_tilt_x_max = 0.3;
@@ -43,7 +44,7 @@ state = 'normal';
 if(!instance_exists(obj_tail)){
     tail = instance_create(x,y,obj_tail)
 }
-if(!instance_exists(obj_button_left)){
+/*if(!instance_exists(obj_button_left)){
     left_button = instance_create(x-64,y-64,obj_button_left)
 }
 if(!instance_exists(obj_button_right)){
@@ -54,10 +55,32 @@ if(!instance_exists(obj_button_left_swipe)){
 }
 if(!instance_exists(obj_button_right_swipe)){
     right_button_swipe = instance_create(x+64,y+64,obj_button_right_swipe)
-}
+}*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///RESET spd_factor
 
-naziv_objekta = object_get_name(id);
-show_debug_message(naziv_objekta);
+spd_factor = spd_factor_base;
 </string>
           </argument>
         </arguments>
@@ -84,10 +107,21 @@ show_debug_message(naziv_objekta);
 
 //if display_get_orientation() = display_landscape
 
+//naziv_objekta = object_get_name(object_index);
+//show_debug_message(naziv_objekta);
+
+
 //MOVE
 
 var device_tilt_x = device_get_tilt_x();
 var device_tilt_y = device_get_tilt_y();
+
+if (os_type == os_windows){
+    if (keyboard_check(vk_up)) device_tilt_y = -device_tilt_y_max;
+    if (keyboard_check(vk_down)) device_tilt_y = device_tilt_y_max;
+    if (keyboard_check(vk_left)) device_tilt_x = device_tilt_x_max;
+    if (keyboard_check(vk_right)) device_tilt_x = -device_tilt_x_max;
+}
 
 
 //check minimum &lt; between &lt; maximum

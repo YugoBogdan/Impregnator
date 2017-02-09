@@ -6,21 +6,38 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_sperm</sprite>
-    <sprite>sprites\spr_defensive_cell</sprite>
-    <sprite>sprites\spr_defensive_cell_eyes</sprite>
-    <sprite>sprites\spr_tail</sprite>
-    <sprite>sprites\spr_button_left</sprite>
-    <sprite>sprites\spr_button_right</sprite>
-    <sprite>sprites\spr_button_left_swipe</sprite>
-    <sprite>sprites\spr_button_right_swipe</sprite>
-    <sprite>sprites\spr_cursor</sprite>
-    <sprite>sprites\spr_input_screen</sprite>
-    <sprite>sprites\spr_sun</sprite>
-    <sprite>sprites\spr_enemy_big</sprite>
-    <sprite>sprites\spr_enemy_big_damaged</sprite>
-    <sprite>sprites\spr_enemy_trosperm</sprite>
-    <sprite>sprites\spr_checkpoint</sprite>
+    <sprites name="Enemies">
+      <sprite>sprites\spr_defensive_cell</sprite>
+      <sprite>sprites\spr_enemy_big_damaged</sprite>
+      <sprite>sprites\spr_enemy_big</sprite>
+      <sprite>sprites\spr_enemy_trosperm</sprite>
+    </sprites>
+    <sprites name="Effects">
+      <sprite>sprites\spr_defensive_cell_eyes</sprite>
+    </sprites>
+    <sprites name="Powerups">
+      <sprite>sprites\spr_sun</sprite>
+      <sprite>sprites\spr_barica</sprite>
+      <sprite>sprites\spr_checkpoint</sprite>
+    </sprites>
+    <sprites name="Player">
+      <sprite>sprites\spr_sperm</sprite>
+      <sprite>sprites\spr_tail</sprite>
+    </sprites>
+    <sprites name="Auxilliary">
+      <sprite>sprites\spr_button_right</sprite>
+      <sprite>sprites\spr_button_left</sprite>
+      <sprite>sprites\spr_button_right_swipe</sprite>
+      <sprite>sprites\spr_button_left_swipe</sprite>
+      <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_input_screen</sprite>
+    </sprites>
+    <sprites name="Menu">
+      <sprite>sprites\spr_menu_egg_wall</sprite>
+      <sprite>sprites\spr_menu_egg_fill</sprite>
+      <sprite>sprites\spr_menu_button_start</sprite>
+      <sprite>sprites\spr_menu_button_quit</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
@@ -32,6 +49,8 @@
     <script>scripts\scr_collect.gml</script>
     <script>scripts\scr_immersion.gml</script>
     <script>scripts\scr_generate_text.gml</script>
+    <script>scripts\scr_checkpoint_next.gml</script>
+    <script>scripts\scr_game_over.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -51,26 +70,36 @@
     <objects name="Controllers">
       <object>objects\controller_level1</object>
       <object>objects\game_ctrl</object>
+      <object>objects\checkpoint_controller</object>
     </objects>
     <objects name="Player">
       <object>objects\obj_sperm</object>
       <object>objects\obj_tail</object>
+      <object>objects\obj_sperm_menu</object>
     </objects>
     <objects name="Powerups">
       <object>objects\obj_sun</object>
       <object>objects\obj_checkpoint</object>
     </objects>
-    <object>objects\obj_button_left</object>
-    <object>objects\obj_button_right</object>
-    <object>objects\obj_button_left_swipe</object>
-    <object>objects\obj_button_right_swipe</object>
-    <object>objects\finger</object>
-    <object>objects\input_screen</object>
+    <objects name="Auxilliary">
+      <object>objects\obj_button_left</object>
+      <object>objects\obj_button_left_swipe</object>
+      <object>objects\obj_button_right</object>
+      <object>objects\obj_button_right_swipe</object>
+      <object>objects\input_screen</object>
+      <object>objects\finger</object>
+    </objects>
+    <objects name="Menu">
+      <object>objects\obj_menu_egg</object>
+      <object>objects\obj_menu_button_start</object>
+      <object>objects\obj_menu_button_quit</object>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\tl_level1</timeline>
   </timelines>
   <rooms name="rooms">
+    <room>rooms\rm_menu</room>
     <room>rooms\rm_room1</room>
     <room>rooms\rm_boss</room>
   </rooms>

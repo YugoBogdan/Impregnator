@@ -34,16 +34,19 @@ timeline_speed = 1;
 timeline_loop = true;
 
 global.score = 0;
-checkpoint_total = 0;
-checkpoint_counter = 0;
+global.points = 0;
 
-defensive_cells_limit = 20;
+defensive_cells_limit = 15;
 
 if(!instance_exists(input_screen)){
     instance_create(room_width/2,room_height/2,input_screen);
 }
 if(!instance_exists(finger)){
     instance_create(0,0,finger);
+}
+//checkpoint_controller
+if (!instance_exists(checkpoint_controller)){
+    instance_create(0,0,checkpoint_controller);
 }
 </string>
           </argument>
@@ -119,7 +122,8 @@ if (instance_number(obj_defensive_cell) &gt;= defensive_cells_limit){
             <kind>1</kind>
             <string>//draw_set_halign(fa_left);
 draw_set_font(fnt_arial_16);
-draw_text(20,20,string(global.score));
+draw_text(20,20,"Score: " + string(global.score));
+draw_text(20,45,"Points: " + string(global.points));
 
 
 draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));

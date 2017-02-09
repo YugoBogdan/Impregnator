@@ -3,7 +3,7 @@
   <spriteName>spr_checkpoint</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -29,7 +29,7 @@
 
 image_speed = 0;
 state = 'normal';
-controller_level1.checkpoint_total += 1;
+checkpoint_controller.checkpoint_total += 1;
 </string>
           </argument>
         </arguments>
@@ -55,8 +55,8 @@ controller_level1.checkpoint_total += 1;
             <string>if (state == 'normal'){
     if (place_meeting(x,y,obj_sperm)){
         state = 'checked';
-        controller_level1.checkpoint_counter += 1;
         image_index = 1;
+        scr_checkpoint_next()
     }
 }
 </string>

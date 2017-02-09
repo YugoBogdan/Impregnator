@@ -61,7 +61,7 @@ tap_counter = 0;
           <argument>
             <kind>1</kind>
             <string>///create another one
-scr_enemy_create(irandom(room_width),-spr_enemy_big.sprite_height/2,obj_enemy_big,x_spd,y_spd);
+scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
 
 </string>
           </argument>
@@ -85,9 +85,30 @@ scr_enemy_create(irandom(room_width),-spr_enemy_big.sprite_height/2,obj_enemy_bi
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///ANIMATION
+            <string>///ANIMATION and COLLISION
 
-image_angle += 1;
+//image_angle += 1;
+
+
+
+
+//Collision
+
+if (place_meeting(x,y,obj_sperm)){
+    collided = 1;
+}else{
+    collided = 0;
+}
+
+
+
+
+
+
+
+
+
+
 </string>
           </argument>
         </arguments>
@@ -158,7 +179,10 @@ if (state == 1){
     if (tap_counter &gt;= 4){
         state = 2;
         sprite_index = spr_enemy_big_damaged;
+    }else if (collided){
+        scr_game_over();
     }
+    
 }
 
 
