@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>while (place_meeting(x,y,obj_sperm_menu)){
+            <string>//zamniti boljim kodom
+
+if (place_meeting(x,y,obj_sperm_menu)){
     obj_sperm_menu.x = obj_sperm_menu.xprevious;
     obj_sperm_menu.y = obj_sperm_menu.yprevious;
 }

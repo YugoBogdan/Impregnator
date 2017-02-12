@@ -37,6 +37,7 @@
       <sprite>sprites\spr_menu_egg_fill</sprite>
       <sprite>sprites\spr_menu_button_start</sprite>
       <sprite>sprites\spr_menu_button_quit</sprite>
+      <sprite>sprites\spr_menu_button_credits</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -68,8 +69,8 @@
       <object>objects\obj_text</object>
     </objects>
     <objects name="Controllers">
-      <object>objects\controller_level1</object>
       <object>objects\game_ctrl</object>
+      <object>objects\controller_level1</object>
       <object>objects\checkpoint_controller</object>
     </objects>
     <objects name="Player">
@@ -91,8 +92,10 @@
     </objects>
     <objects name="Menu">
       <object>objects\obj_menu_egg</object>
+      <object>objects\obj_menu_button_parent</object>
       <object>objects\obj_menu_button_start</object>
       <object>objects\obj_menu_button_quit</object>
+      <object>objects\obj_menu_button_credits</object>
     </objects>
   </objects>
   <timelines name="timelines">
@@ -102,6 +105,7 @@
     <room>rooms\rm_menu</room>
     <room>rooms\rm_room1</room>
     <room>rooms\rm_boss</room>
+    <room>rooms\rm_credits</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

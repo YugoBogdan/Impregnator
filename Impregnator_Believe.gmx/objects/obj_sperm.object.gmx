@@ -33,6 +33,7 @@ device_tilt_x_min = 0.025;
 device_tilt_y_min = 0.025;
 device_tilt_x_max = 0.3;
 device_tilt_y_max = 0.3;
+speed_max = spd_factor * device_tilt_x_max/10;
 
 image_speed = 0.25;
 
@@ -117,10 +118,13 @@ var device_tilt_x = device_get_tilt_x();
 var device_tilt_y = device_get_tilt_y();
 
 if (os_type == os_windows){
-    if (keyboard_check(vk_up)) device_tilt_y = -device_tilt_y_max;
-    if (keyboard_check(vk_down)) device_tilt_y = device_tilt_y_max;
-    if (keyboard_check(vk_left)) device_tilt_x = device_tilt_x_max;
-    if (keyboard_check(vk_right)) device_tilt_x = -device_tilt_x_max;
+    if (keyboard_check(vk_up)) var device_tilt_y = -device_tilt_y_max;
+    else if (keyboard_check(vk_down)) var device_tilt_y = device_tilt_y_max;
+    else var device_tilt_y = 0;
+    
+    if (keyboard_check(vk_left)) var device_tilt_x = device_tilt_x_max;
+    else if (keyboard_check(vk_right)) var device_tilt_x = -device_tilt_x_max;
+    else var device_tilt_x = 0;
 }
 
 
@@ -146,6 +150,8 @@ if (state == 'normal'){
     x += x_spd;
     y += y_spd;
 }
+
+
 
 //pitagorina teorema
 spd = sqrt(sqr(x_spd)+sqr(y_spd));
@@ -191,6 +197,16 @@ if(x_is_positive &amp;&amp; !y_is_positive){
 
 image_angle = theta;
 tail.image_angle = theta;
+
+/*if (state == 'normal-new'){
+    x_acc = x_spd;
+    y_acc = y_spd;
+    
+    acc = spd/3;
+    motion_add(theta, acc);
+    if (speed &gt; speed_max) speed = speed_max;
+    show_debug_message(speed);
+}*/
 </string>
           </argument>
         </arguments>
