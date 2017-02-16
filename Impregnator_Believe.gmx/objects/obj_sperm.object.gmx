@@ -3,7 +3,7 @@
   <spriteName>spr_sperm</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,20 +27,33 @@
             <kind>1</kind>
             <string>///initialize
 
+device_tilt_x = 0;
+device_tilt_y = 0;
+//device_tilt_z = 0;
+
+//error_counter = 0;
+
 spd_factor_base = 50;
 spd_factor = spd_factor_base;
 device_tilt_x_min = 0.025;
 device_tilt_y_min = 0.025;
 device_tilt_x_max = 0.3;
 device_tilt_y_max = 0.3;
-speed_max = spd_factor * device_tilt_x_max/10;
 
-image_speed = 0.25;
+speed_max = spd_factor * device_tilt_x_max/1.5;
+speed_reduction = speed_max/50;
 
-state = 'normal';
+theta = 0;
+direction_diff_theta = 0;
+
+image_speed = 0;
+image_index = 1;
+
+state = 'normal-new';
 //list of states:
 //normal
 //immobile
+
 
 if(!instance_exists(obj_tail)){
     tail = instance_create(x,y,obj_tail)
@@ -104,7 +117,7 @@ spd_factor = spd_factor_base;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///MOVE
+            <string>///MOVE, ANIMATE
 
 //if display_get_orientation() = display_landscape
 
@@ -114,22 +127,41 @@ spd_factor = spd_factor_base;
 
 //MOVE
 
-var device_tilt_x = device_get_tilt_x();
-var device_tilt_y = device_get_tilt_y();
-
-if (os_type == os_windows){
-    if (keyboard_check(vk_up)) var device_tilt_y = -device_tilt_y_max;
-    else if (keyboard_check(vk_down)) var device_tilt_y = device_tilt_y_max;
-    else var device_tilt_y = 0;
+if (os_type == os_android){
+    device_tilt_x = device_get_tilt_x();
+    device_tilt_y = device_get_tilt_y();
     
-    if (keyboard_check(vk_left)) var device_tilt_x = device_tilt_x_max;
-    else if (keyboard_check(vk_right)) var device_tilt_x = -device_tilt_x_max;
-    else var device_tilt_x = 0;
+    //if (instance_exists(obj_boss)){
+    /*device_tilt_z = device_get_tilt_z();
+        
+        error_counter ++;
+        if (error_counter == 30){
+            show_message(device_tilt_z);
+            error_counter = 0;
+        }
+        show_debug_message(device_tilt_z);*/
+    //}
+}
+    
+if (os_type == os_windows){
+    if (keyboard_check(vk_up)) device_tilt_y = -device_tilt_y_max/1.5;
+    else if (keyboard_check(vk_down)) device_tilt_y = device_tilt_y_max/1.5;
+    else device_tilt_y = 0;
+    
+    if (keyboard_check(vk_left)) device_tilt_x = device_tilt_x_max/1.5;
+    else if (keyboard_check(vk_right)) device_tilt_x = -device_tilt_x_max/1.5;
+    else device_tilt_x = 0;
 }
 
+if (abs(device_tilt_y) &lt; device_tilt_y_min &amp;&amp; abs(device_tilt_x) &lt; device_tilt_x_min) no_input = true;
+else no_input = false;
+
+
+if (device_tilt_x==0) device_tilt_x = device_tilt_x_min;
+if (device_tilt_y==0) device_tilt_y = device_tilt_y_min;
 
 //check minimum &lt; between &lt; maximum
-if (abs(device_tilt_x) &lt; device_tilt_x_min){
+if (abs(device_tilt_x) &lt;= device_tilt_x_min){
     x_spd = 0;
 }else if (abs(device_tilt_x) &lt; device_tilt_x_max){
     x_spd = -(spd_factor * device_tilt_x);
@@ -137,7 +169,7 @@ if (abs(device_tilt_x) &lt; device_tilt_x_min){
     x_spd = -(spd_factor * device_tilt_x_max) *sign(device_tilt_x);
 }
 
-if (abs(device_tilt_y) &lt; device_tilt_y_min){
+if (abs(device_tilt_y) &lt;= device_tilt_y_min){
     y_spd = 0;
 }else if (abs(device_tilt_y &lt; device_tilt_y_max)){
     y_spd = spd_factor * device_tilt_y;
@@ -151,9 +183,7 @@ if (state == 'normal'){
     y += y_spd;
 }
 
-
-
-//pitagorina teorema
+//pitagorina teorema - magnituda brzine
 spd = sqrt(sqr(x_spd)+sqr(y_spd));
 //spd treba da racuna iako ne moze da se krece, posto ce se koristiti u funkcijama koprcanja
 
@@ -173,41 +203,119 @@ if (sign(y_spd) || sign(y_spd) == 0){
     var y_is_positive = -1;
 }
 
-//directional angle for tail direction
-if (x_spd == 0){
-    x_spd = 0.00001*sign(device_tilt_x);
+//prenosenje x_spd i y_spd na pomocne promenljive za racunanje ugla
+if (x_spd != 0){
+    x_spd_aux = x_spd;
+}else{
+    x_spd_aux = 0.00001*sign(device_tilt_x);
 }
 
-if (y_spd == 0){
-    y_spd = 0.00001*sign(device_tilt_y);
+if (y_spd != 0){
+    y_spd_aux = y_spd;
+}else{
+    y_spd_aux = 0.00001*sign(device_tilt_y);
 }
 
-if(x_is_positive &amp;&amp; !y_is_positive){
-    theta = radtodeg(arctan(abs(y_spd)/abs(x_spd)));
-
-}else if(!x_is_positive &amp;&amp; !y_is_positive){
-    theta = radtodeg(arctan(abs(x_spd)/abs(y_spd))) +90;
-
-}else if(!x_is_positive &amp;&amp; y_is_positive){
-    theta = radtodeg(arctan(abs(y_spd)/abs(x_spd))) +180;
-
-}else if(x_is_positive &amp;&amp; y_is_positive){
-    theta = radtodeg(arctan(abs(x_spd)/abs(y_spd))) +270;
-}
-
-image_angle = theta;
-tail.image_angle = theta;
-
-/*if (state == 'normal-new'){
-    x_acc = x_spd;
-    y_acc = y_spd;
+if (os_type == os_windows
+    &amp;&amp; no_input == false
+    || os_type == os_android)
+    {
+    //directional angle for spermy/tail direction
+    if(x_is_positive &amp;&amp; !y_is_positive){
+        theta = radtodeg(arctan(abs(y_spd_aux)/abs(x_spd_aux)));
+        
+    }else if(!x_is_positive &amp;&amp; !y_is_positive){
+        theta = radtodeg(arctan(abs(x_spd_aux)/abs(y_spd_aux))) +90;
     
-    acc = spd/3;
+    }else if(!x_is_positive &amp;&amp; y_is_positive){
+        theta = radtodeg(arctan(abs(y_spd_aux)/abs(x_spd_aux))) +180;
+    
+    }else if(x_is_positive &amp;&amp; y_is_positive){
+        theta = radtodeg(arctan(abs(x_spd_aux)/abs(y_spd_aux))) +270;
+    }
+}
+
+direction_diff_theta = direction - theta;
+
+if (state == 'normal'){
+    image_angle = theta;
+    tail.image_angle = theta;
+}
+
+if (state == 'normal-new'){
+    //x_acc = x_spd/3;
+    //y_acc = y_spd/3;
+    
+    acc = spd/9;
     motion_add(theta, acc);
     if (speed &gt; speed_max) speed = speed_max;
-    show_debug_message(speed);
-}*/
+    //show_debug_message(speed);
+    
+    if (no_input){
+        if (speed &gt; speed_reduction) speed -= speed_reduction;
+        else if (speed &lt; speed_reduction) speed = 0;
+    }
+}
+if (!no_input){
+    image_angle = theta;
+    tail.image_angle = direction;
+    
+    //jebeni sat na navijanje, ali simpa izgleda :)
+    /*with(tail){
+        if (image_yscale &gt;= 1){
+            image_yscale = 1;
+            scaling_dir = -1;
+        } else if (image_yscale &lt;= -1){
+            image_yscale = -1;
+            scaling_dir = 1;
+        }
+        image_yscale += 0.2*scaling_dir;
+    }*/
+    
+    //ovo je malo umarajuce za oci, ali trenutno je zanimljivo
+    with(tail){
+        scale_dir_counter ++;
+        if (scale_dir_counter == 2){
+            image_yscale *= -1;
+            scale_dir_counter = 0;
+        }
+    }
+}
+
+    /*if (image_angle != theta){
+        image_angle = theta;
+    }*/
+    
+    /*if (tail.image_angle != direction){
+        tail.image_angle = (tail.image_angle + direction) / 5;
+    }*/
+
+//check room boundarioso (bottom, top)
+if (y &gt;= room_height - sprite_get_height(obj_sperm)/4) y = room_height - sprite_get_height(obj_sperm)/4;
+else if ( y &lt;= 0 + sprite_get_height(obj_sperm)/4) y = 0 + sprite_get_height(obj_sperm)/4;
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>112</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_wrap</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>

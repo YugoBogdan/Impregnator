@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,9 +27,8 @@
             <kind>1</kind>
             <string>///INITIALIZE
 
-//event_inherited();
+event_inherited();
 
-image_speed = 0.25;
 image_xscale = 1.5;
 image_yscale = 1.5;
 
@@ -194,7 +193,7 @@ if(state == 2){
             
             //koprcanje
             koprcanje = 0;
-            obj_sperm.theta_previous = obj_sperm.theta
+            obj_sperm.theta_previous = obj_sperm.theta;
         }
     }
 }
@@ -202,11 +201,12 @@ if(state == 2){
 if (state == 3){
     obj_sperm.x = x;
     obj_sperm.y = y;
-    
+
     koprcanje += abs(obj_sperm.theta - obj_sperm.theta_previous);
+    obj_sperm.theta_previous = obj_sperm.theta;
     
     if (koprcanje &gt;= 1000){
-        obj_sperm.state = 'normal';
+        obj_sperm.state = 'normal-new';
         state = 1; //mozda bude smaralo kada zabranim da se igrac ne moze kretati tu gde se nalazi veliki
         tap_counter = 0; 
         sprite_index = spr_enemy_big;

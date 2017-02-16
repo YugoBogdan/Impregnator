@@ -56,7 +56,6 @@ instance_create(64,512,obj_checkpoint);*/</code>
   </views>
   <instances>
     <instance objName="obj_sperm" x="256" y="672" name="inst_95171674" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_enemy_big" x="192" y="160" name="inst_05922CA0" locked="0" code="x_spd = 0;&#xA;y_spd = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

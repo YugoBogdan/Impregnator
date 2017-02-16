@@ -53,7 +53,9 @@ checkpoint_controller.checkpoint_total += 1;
           <argument>
             <kind>1</kind>
             <string>if (state == 'normal'){
-    if (place_meeting(x,y,obj_sperm)){
+    if (place_meeting(x,y,obj_sperm) ||
+        place_meeting(x,y,obj_tail))
+    {
         state = 'checked';
         image_index = 1;
         scr_checkpoint_next()

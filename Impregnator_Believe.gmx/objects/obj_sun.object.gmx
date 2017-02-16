@@ -99,7 +99,9 @@ if (x &gt; room_width+sprite_width/2){
     instance_destroy();
 }
 
-if (place_meeting(x,y,obj_sperm)){
+if (place_meeting(x,y,obj_sperm) ||
+    place_meeting(x,y,obj_tail))
+{
     collide = 1;
 }else{
     collide = 0;

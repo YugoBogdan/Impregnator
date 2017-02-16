@@ -11,6 +11,7 @@
       <sprite>sprites\spr_enemy_big_damaged</sprite>
       <sprite>sprites\spr_enemy_big</sprite>
       <sprite>sprites\spr_enemy_trosperm</sprite>
+      <sprite>sprites\spr_boss</sprite>
     </sprites>
     <sprites name="Effects">
       <sprite>sprites\spr_defensive_cell_eyes</sprite>
@@ -52,6 +53,7 @@
     <script>scripts\scr_generate_text.gml</script>
     <script>scripts\scr_checkpoint_next.gml</script>
     <script>scripts\scr_game_over.gml</script>
+    <script>scripts\scr_challenge_next.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -59,9 +61,11 @@
   </fonts>
   <objects name="objects">
     <objects name="Enemies">
+      <object>objects\obj_enemy_parent</object>
       <object>objects\obj_enemy_trosperm</object>
       <object>objects\obj_defensive_cell</object>
       <object>objects\obj_enemy_big</object>
+      <object>objects\obj_boss</object>
     </objects>
     <objects name="Effects">
       <object>objects\obj_defensive_cell_eyes</object>
