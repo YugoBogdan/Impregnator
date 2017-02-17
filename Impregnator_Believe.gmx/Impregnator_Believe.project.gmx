@@ -56,6 +56,9 @@
     <script>scripts\scr_checkpoint_next.gml</script>
     <script>scripts\scr_game_over.gml</script>
     <script>scripts\scr_challenge_next.gml</script>
+    <script>scripts\draw_text_outline.gml</script>
+    <script>scripts\load_object_from_json_file.gml</script>
+    <script>scripts\save_object_in_json_file.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -70,11 +73,11 @@
       <object>objects\obj_boss</object>
     </objects>
     <objects name="Effects">
-      <object>objects\obj_defensive_cell_eyes</object>
       <object>objects\obj_immersion</object>
       <object>objects\obj_text</object>
     </objects>
     <objects name="Controllers">
+      <object>objects\highscore_controller</object>
       <object>objects\game_ctrl</object>
       <object>objects\controller_level1</object>
       <object>objects\checkpoint_controller</object>
