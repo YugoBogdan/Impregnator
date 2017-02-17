@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>scale_dir_counter = 0;
+image_index = obj_sperm.image_index;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
