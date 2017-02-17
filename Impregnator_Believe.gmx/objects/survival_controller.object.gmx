@@ -25,37 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///initialize
-//if (!timeline_running){
-timeline_index = tl_level1;
+            <string>timeline_index = tl_level1;
 timeline_position = 0;
 timeline_running = true;
-timeline_speed = 1;
+timeline_speed = 1.2;
 timeline_loop = true;
-
-global.score = 0;
-global.points = 0;
-
-enemy_limit = 15;
-
-challenge = ds_list_create();
-ds_list_add(challenge,'checkpoint','boss','survival');
-current_challenge = ds_list_find_value(challenge,0);
-challenge_up_and_running = false;
-
-if(!instance_exists(input_screen)){
-    instance_create(room_width/2,room_height/2,input_screen);
-}
-if(!instance_exists(finger)){
-    instance_create(0,0,finger);
-}
-
+controller_level1.enemy_limit += 10;
+        
+timer = 510;
+alarm[0] = timer;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -72,43 +56,18 @@ if(!instance_exists(finger)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///score + instance check number
-global.score += 1/room_speed;
+            <string>instance_destroy();
 
-//instance number check
-
-if (instance_number(obj_enemy_parent) &gt;= enemy_limit){
-    timeline_index = tl_level1;
-    timeline_running = false;
-} else if (instance_number(obj_enemy_parent) &amp;&amp; timeline_running = false){
-    timeline_running = true;
+with(obj_enemy_parent){
+    destroy_event = false;
+    instance_destroy();
+}
+with(obj_powerup_parent){
+    destroy_event = false;
+    instance_destroy();
 }
 
-//challegne controller
-if (!challenge_up_and_running){
-    switch (current_challenge){
-        case 'checkpoint':
-        if (!instance_exists(checkpoint_controller)){
-            instance_create(0,0,checkpoint_controller);
-            challenge_up_and_running = true;
-        }
-        break;
-
-        case 'survival':
-        if (!instance_exists(survival_controller)){
-            instance_create(0,0,survival_controller);
-            challenge_up_and_running = true;
-        }
-        break;
-        
-        case 'boss':
-        if (!instance_exists(obj_boss)){
-            instance_create(room_width/2,0,obj_boss);
-            challenge_up_and_running = true;
-        }
-        break;
-    }
-}
+controller_level1.enemy_limit -= 10;
 </string>
           </argument>
         </arguments>
@@ -131,16 +90,10 @@ if (!challenge_up_and_running){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_set_halign(fa_left);
+            <string>timer -= 1;
+
 draw_set_font(fnt_arial_16);
-draw_text(20,20,"Existance: " + string(global.score));
-draw_text(20,45,"Points: " + string(global.points));
-
-
-draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));
-//draw_set_halign(fa_center);
-
-//draw_path(path0, room_width/2, room_height/2, true);
+draw_text(20,70,"Just:" + string(timer/room_speed) + "more!");
 </string>
           </argument>
         </arguments>

@@ -53,8 +53,10 @@ image_yscale = 1.5;
           <argument>
             <kind>1</kind>
             <string>///create another one
-scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_defensive_cell,x_spd,y_spd);
 
+if (destroy_event){
+    scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_defensive_cell,x_spd,y_spd);
+}
 </string>
           </argument>
         </arguments>
@@ -79,6 +81,8 @@ scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_defensive_cell
             <kind>1</kind>
             <string>///ANIMATION and MOVE and DESTROY
 
+event_inherited();
+
 image_angle += 1;
 
 
@@ -97,14 +101,7 @@ if (x &gt; room_width+sprite_width/2){
     instance_destroy();
 }
 
-//Collision
-
-if (place_meeting(x,y,obj_sperm)){
-    collided = 1;
-}else{
-    collided = 0;
-}
-
+//game over
 if (collided){
     scr_game_over();
 }

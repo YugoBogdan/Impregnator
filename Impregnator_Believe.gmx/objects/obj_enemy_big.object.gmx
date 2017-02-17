@@ -60,7 +60,9 @@ tap_counter = 0;
           <argument>
             <kind>1</kind>
             <string>///create another one
-scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
+if (destroy_event){
+    scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
+}
 
 </string>
           </argument>
@@ -84,59 +86,17 @@ scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_sp
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///ANIMATION and COLLISION
-
-//image_angle += 1;
-
-
-
-
-//Collision
-
-if (place_meeting(x,y,obj_sperm)){
-    collided = 1;
-}else{
-    collided = 0;
-}
-
-
-
-
-
-
-
-
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///MOVE and DESTROY
+
+event_inherited();
 
 x += x_spd;
 y += y_spd;
 
-if (y &gt; room_height+sprite_height/2){
+if (y &gt; room_height + sprite_height/2){
     instance_destroy();
 }
-if (x &gt; room_width+sprite_width/2){
+if (x &gt; room_width + sprite_width/2){
     instance_destroy();
 }
 </string>

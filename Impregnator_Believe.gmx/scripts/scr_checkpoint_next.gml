@@ -8,5 +8,5 @@ if (checkpoint_controller.checkpoint_counter < checkpoint_controller.checkpoint_
     with(obj_checkpoint) instance_destroy();
     with(checkpoint_controller) instance_destroy();
     
-    scr_generate_text("WOW! Good job fucking! I mean good fucking job!",5,4*room_speed);
+    scr_generate_text("WOW! Good job fucking! I mean good fucking job!",3,4*room_speed);
 }

@@ -44,7 +44,9 @@
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path0</path>
+  </paths>
   <scripts name="scripts">
     <script>scripts\scr_damage.gml</script>
     <script>scripts\scr_enemy_create.gml</script>
@@ -76,6 +78,7 @@
       <object>objects\game_ctrl</object>
       <object>objects\controller_level1</object>
       <object>objects\checkpoint_controller</object>
+      <object>objects\survival_controller</object>
     </objects>
     <objects name="Player">
       <object>objects\obj_sperm</object>
@@ -83,6 +86,7 @@
       <object>objects\obj_sperm_menu</object>
     </objects>
     <objects name="Powerups">
+      <object>objects\obj_powerup_parent</object>
       <object>objects\obj_sun</object>
       <object>objects\obj_checkpoint</object>
     </objects>
