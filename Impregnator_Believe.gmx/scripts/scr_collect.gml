@@ -3,7 +3,7 @@ text = argument[0];
 points = argument[1];
 duration = argument[2];
 
-scr_generate_text(text,points,duration);
+scr_generate_text(text,points,duration,x,y);
 scr_immersion(8,15);
 
 

@@ -25,14 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>timeline_index = tl_level1;
+            <string>points_worth = 5;
+
+timeline_index = tl_level1;
 timeline_position = 0;
 timeline_running = true;
 timeline_speed = 1.2;
 timeline_loop = true;
 controller_level1.enemy_limit += 10;
         
-timer = 510;
+timer = 750;
 alarm[0] = timer;
 </string>
           </argument>
@@ -57,6 +59,11 @@ alarm[0] = timer;
           <argument>
             <kind>1</kind>
             <string>instance_destroy();
+timeline_index = tl_level1;
+timeline_position = 0;
+timeline_running = true;
+timeline_speed = 1;
+timeline_loop = true;
 
 with(obj_enemy_parent){
     destroy_event = false;
@@ -68,6 +75,8 @@ with(obj_powerup_parent){
 }
 
 controller_level1.enemy_limit -= 10;
+
+scr_challenge_next(points_worth);
 </string>
           </argument>
         </arguments>
@@ -93,7 +102,7 @@ controller_level1.enemy_limit -= 10;
             <string>timer -= 1;
 
 draw_set_font(fnt_arial_16);
-draw_text(20,70,"Just:" + string(timer/room_speed) + "more!");
+draw_text(20,70,"Just: " + string(floor(timer/room_speed+0.99)) + " more!");
 </string>
           </argument>
         </arguments>

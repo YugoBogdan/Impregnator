@@ -1,7 +1,6 @@
-/// load_object_from_json_file(file_name)
+/// load_highscore_from_json_file()
 
-var file_name = argument0;
-var result = ds_map_create();
+var file_name = "highscore.json";
 
 if file_exists(file_name){
     var json_file = file_text_open_read(file_name);

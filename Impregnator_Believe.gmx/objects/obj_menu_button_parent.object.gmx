@@ -82,6 +82,8 @@ if (state == 'waiting' &amp;&amp; place_meeting(x,y,obj_sperm_menu)){
             <string>///draw self and text
 
 draw_self();
+draw_set_font(fnt_arial_12);
+draw_set_color(c_black);
 draw_text(x,y,button_text);
 </string>
           </argument>

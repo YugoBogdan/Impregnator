@@ -12,6 +12,7 @@
       <sprite>sprites\spr_enemy_big</sprite>
       <sprite>sprites\spr_enemy_trosperm</sprite>
       <sprite>sprites\spr_boss</sprite>
+      <sprite>sprites\sprite23</sprite>
     </sprites>
     <sprites name="Effects">
       <sprite>sprites\spr_defensive_cell_eyes</sprite>
@@ -23,6 +24,7 @@
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_sperm</sprite>
+      <sprite>sprites\spr_sperm_mask</sprite>
       <sprite>sprites\spr_tail</sprite>
     </sprites>
     <sprites name="Auxilliary">
@@ -57,8 +59,9 @@
     <script>scripts\scr_game_over.gml</script>
     <script>scripts\scr_challenge_next.gml</script>
     <script>scripts\draw_text_outline.gml</script>
-    <script>scripts\load_object_from_json_file.gml</script>
-    <script>scripts\save_object_in_json_file.gml</script>
+    <script>scripts\load_highscore_from_json_file.gml</script>
+    <script>scripts\save_highscore_in_json_file.gml</script>
+    <script>scripts\scr_visual_effect.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -75,13 +78,16 @@
     <objects name="Effects">
       <object>objects\obj_immersion</object>
       <object>objects\obj_text</object>
+      <object>objects\obj_visual_effect</object>
     </objects>
     <objects name="Controllers">
-      <object>objects\highscore_controller</object>
       <object>objects\game_ctrl</object>
       <object>objects\controller_level1</object>
       <object>objects\checkpoint_controller</object>
       <object>objects\survival_controller</object>
+      <object>objects\achievement_ctrl</object>
+      <object>objects\highscore_controller</object>
+      <object>objects\rm_spd_ctrl</object>
     </objects>
     <objects name="Player">
       <object>objects\obj_sperm</object>

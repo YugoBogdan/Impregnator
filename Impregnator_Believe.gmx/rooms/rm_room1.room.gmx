@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
-  <colour>16711935</colour>
+  <colour>16744703</colour>
   <showcolour>-1</showcolour>
   <code>instance_create(0,0,controller_level1);
 

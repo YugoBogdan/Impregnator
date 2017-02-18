@@ -58,6 +58,7 @@ collide = 0;
 if (destroy_event){
     if (collide){
         scr_collect("NICE!",1,1*room_speed);
+        scr_visual_effect(ef_spark,c_white,30)
     }
     
     //create another one

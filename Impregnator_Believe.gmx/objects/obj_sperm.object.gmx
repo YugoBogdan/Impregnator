@@ -48,6 +48,7 @@ direction_diff_theta = 0;
 
 image_speed = 0;
 image_index = global.sperm_image;
+mask_index = spr_sperm_mask;
 
 state = 'normal-new';
 //list of states:

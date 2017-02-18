@@ -33,8 +33,9 @@ timeline_running = true;
 timeline_speed = 1;
 timeline_loop = true;
 
-global.score = 0;
+global.ingame_time = 0;
 global.points = 0;
+global.challenges_count = 0;
 
 enemy_limit = 15;
 
@@ -49,6 +50,14 @@ if(!instance_exists(input_screen)){
 if(!instance_exists(finger)){
     instance_create(0,0,finger);
 }
+if(!instance_exists(achievement_ctrl)){
+    instance_create(0,0,achievement_ctrl);
+}
+/*if(!instance_exists(rm_spd_ctrl)){
+    instance_create(0,0,rm_spd_ctrl);
+}*/
+
+
 
 </string>
           </argument>
@@ -72,8 +81,8 @@ if(!instance_exists(finger)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///score + instance check number
-global.score += 1/room_speed;
+            <string>///ingame_time + instance check number
+global.ingame_time += 1/room_speed;
 
 //instance number check
 
@@ -91,6 +100,7 @@ if (!challenge_up_and_running){
         if (!instance_exists(checkpoint_controller)){
             instance_create(0,0,checkpoint_controller);
             challenge_up_and_running = true;
+            global.challenges_count += 1;
         }
         break;
 
@@ -98,6 +108,7 @@ if (!challenge_up_and_running){
         if (!instance_exists(survival_controller)){
             instance_create(0,0,survival_controller);
             challenge_up_and_running = true;
+            global.challenges_count += 1;
         }
         break;
         
@@ -105,7 +116,12 @@ if (!challenge_up_and_running){
         if (!instance_exists(obj_boss)){
             instance_create(room_width/2,0,obj_boss);
             challenge_up_and_running = true;
+            global.challenges_count += 1;        
         }
+        break;
+        
+        default:
+        show_message("error");
         break;
     }
 }
@@ -133,11 +149,12 @@ if (!challenge_up_and_running){
             <kind>1</kind>
             <string>//draw_set_halign(fa_left);
 draw_set_font(fnt_arial_16);
-draw_text(20,20,"Existance: " + string(global.score));
+draw_set_color(c_black);
+draw_text(20,20,"Existence: " + string(floor(global.ingame_time)));
 draw_text(20,45,"Points: " + string(global.points));
 
 
-draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));
+//draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));
 //draw_set_halign(fa_center);
 
 //draw_path(path0, room_width/2, room_height/2, true);

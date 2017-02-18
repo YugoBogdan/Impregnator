@@ -36,6 +36,18 @@ switch(irandom(4)){
 }
 
 event_inherited();
+
+/*var a_map = ds_map_create();
+for (var i = 0; i &lt; 10; i++){
+    game_key = "game"+string(i);
+    //show_message(game_key);
+    ds_map_add(a_map,game_key,i+10);
+}*/
+
+/*save_highscore_in_json_file();
+result = load_highscore_from_json_file("highscore.json");
+
+show_message(ds_map_find_value(result,"date"));*/
 </string>
           </argument>
         </arguments>

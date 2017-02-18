@@ -27,11 +27,13 @@
             <kind>1</kind>
             <string>///initialize
 
+points_worth = 5;
+
 checkpoint_total = 0;
 checkpoint_counter = 0;
-checkpoint_max = 5;
+checkpoint_max = 6;
 
-instance_create(irandom(room_width),irandom(room_height),obj_checkpoint);
+scr_checkpoint_next();
 </string>
           </argument>
         </arguments>
@@ -54,7 +56,7 @@ instance_create(irandom(room_width),irandom(room_height),obj_checkpoint);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_challenge_next();
+            <string>scr_challenge_next(points_worth);
 </string>
           </argument>
         </arguments>
