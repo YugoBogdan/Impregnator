@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprites name="Enemies">
       <sprite>sprites\spr_defensive_cell</sprite>
+      <sprite>sprites\spr_enemy_tail</sprite>
       <sprite>sprites\spr_enemy_big_damaged</sprite>
       <sprite>sprites\spr_enemy_big</sprite>
       <sprite>sprites\spr_enemy_trosperm</sprite>
@@ -62,6 +63,7 @@
     <script>scripts\load_highscore_from_json_file.gml</script>
     <script>scripts\save_highscore_in_json_file.gml</script>
     <script>scripts\scr_visual_effect.gml</script>
+    <script>scripts\scr_theta.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -74,6 +76,7 @@
       <object>objects\obj_defensive_cell</object>
       <object>objects\obj_enemy_big</object>
       <object>objects\obj_boss</object>
+      <object>objects\obj_enemy_tail</object>
     </objects>
     <objects name="Effects">
       <object>objects\obj_immersion</object>

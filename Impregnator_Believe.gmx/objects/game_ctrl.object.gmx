@@ -53,7 +53,8 @@ device_mouse_dbclick_enable(false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>first_text = false;
+            <string>///first text
+first_text = false;
 </string>
           </argument>
         </arguments>
@@ -100,9 +101,9 @@ immersion_stop();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (first_text){
+            <string>/*if (first_text){
     draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));
-}
+}*/
 </string>
           </argument>
         </arguments>
