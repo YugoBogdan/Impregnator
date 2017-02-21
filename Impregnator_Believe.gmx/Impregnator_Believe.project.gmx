@@ -64,6 +64,8 @@
     <script>scripts\save_highscore_in_json_file.gml</script>
     <script>scripts\scr_visual_effect.gml</script>
     <script>scripts\scr_theta.gml</script>
+    <script>scripts\scr_change_speed.gml</script>
+    <script>scripts\scr_speed_max.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>

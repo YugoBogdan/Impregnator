@@ -115,8 +115,7 @@ if (place_meeting(x,y,obj_sperm) ||
 
 //COLLECT
 if (collide){
-    obj_sperm.spd_factor *= 1.2;
-    obj_sperm.alarm[1] = 90;
+    scr_change_speed(obj_sperm,1.2,90);
     instance_destroy();
 }
 </string>

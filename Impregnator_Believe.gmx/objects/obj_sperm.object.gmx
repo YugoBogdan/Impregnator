@@ -40,7 +40,7 @@ device_tilt_y_min = 0.025;
 device_tilt_x_max = 0.3;
 device_tilt_y_max = 0.3;
 
-speed_max = spd_factor * device_tilt_x_max/1.5;
+speed_max = scr_speed_max();
 speed_reduction = speed_max/50;
 
 theta = 0;
@@ -96,6 +96,7 @@ if(!instance_exists(obj_button_right_swipe)){
             <string>///RESET spd_factor
 
 spd_factor = spd_factor_base;
+speed_max = scr_speed_max();
 </string>
           </argument>
         </arguments>
@@ -145,12 +146,12 @@ if (os_type == os_android){
 }
     
 if (os_type == os_windows){
-    if (keyboard_check(vk_up)) device_tilt_y = -device_tilt_y_max/1.5;
-    else if (keyboard_check(vk_down)) device_tilt_y = device_tilt_y_max/1.5;
+    if (keyboard_check(vk_up) || keyboard_check(ord('W'))) device_tilt_y = -device_tilt_y_max/1.5;
+    else if (keyboard_check(vk_down) || keyboard_check(ord('S'))) device_tilt_y = device_tilt_y_max/1.5;
     else device_tilt_y = 0;
     
-    if (keyboard_check(vk_left)) device_tilt_x = device_tilt_x_max/1.5;
-    else if (keyboard_check(vk_right)) device_tilt_x = -device_tilt_x_max/1.5;
+    if (keyboard_check(vk_left) || keyboard_check(ord('A'))) device_tilt_x = device_tilt_x_max/1.5;
+    else if (keyboard_check(vk_right) || keyboard_check(ord('D'))) device_tilt_x = -device_tilt_x_max/1.5;
     else device_tilt_x = 0;
 }
 

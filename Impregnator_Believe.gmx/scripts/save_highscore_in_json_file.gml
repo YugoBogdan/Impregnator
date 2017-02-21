@@ -65,8 +65,6 @@ ds_map_add(this_highscore,"challenges",string(challenges_count));
 ds_map_add(this_highscore,"total_score",string(global.total_score));
 ds_map_add(this_highscore,"date",date);
 
-
-
 //ds_list_add(highscore_list,this_highscore);
 
 var json_file = file_text_open_write("highscore.json");
@@ -75,9 +73,18 @@ file_text_close(json_file);
 
 var iz_liste = this_highscore;
 
-show_message("TOTAL SCORE: " + string(ds_map_find_value(iz_liste,"total_score")));
-show_message("Existed for: " + string(ds_map_find_value(iz_liste,"existence")) + " seconds!");
-show_message("Points gathered: " + string(ds_map_find_value(iz_liste,"points")));
-show_message("Challenges played: " + string(ds_map_find_value(iz_liste,"challenges")));
-show_message("Date: " + string(ds_map_find_value(iz_liste,"date")));
+/*result = load_highscore_from_json_file();
+show_message(string(ds_map_find_value(result,"total_score")));*/
+var string_total_score = "TOTAL SCORE: " + string(ds_map_find_value(iz_liste,"total_score"));
+var string_existence = "# +Existed: " + string(ds_map_find_value(iz_liste,"existence")) + " seconds!";
+var string_points = "# +Points gathered: " + string(ds_map_find_value(iz_liste,"points"));
+var string_challenges = "# +Challenges played: " + string(ds_map_find_value(iz_liste,"challenges"));
+var string_date = "# +Date: " + string(ds_map_find_value(iz_liste,"date"));
+
+show_message(string_total_score
+    + "#-------------------------"
+    + string_existence
+    + string_points
+    + string_challenges
+    + string_date);
 
