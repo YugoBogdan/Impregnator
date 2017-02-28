@@ -61,7 +61,7 @@ alarm[1] = 1; //theta
             <string>///create another one
 
 if (destroy_event){
-    scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_defensive_cell,x_spd,y_spd);
+    scr_enemy_create(position,obj_defensive_cell);
 }
 
 with(tail) instance_destroy();

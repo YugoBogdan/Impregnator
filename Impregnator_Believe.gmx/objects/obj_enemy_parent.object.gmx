@@ -29,6 +29,13 @@
 image_index = irandom(image_number-1);
 
 destroy_event = true;
+
+spd = 2;
+orientation = point_direction(x,y,irandom(room_width),irandom(room_height));
+motion_set(orientation,spd);
+
+x_spd = lengthdir_x(spd, orientation);
+y_spd = lengthdir_y(spd, orientation);
 </string>
           </argument>
         </arguments>

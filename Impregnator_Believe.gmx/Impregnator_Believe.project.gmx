@@ -57,15 +57,17 @@
     <script>scripts\scr_immersion.gml</script>
     <script>scripts\scr_generate_text.gml</script>
     <script>scripts\scr_checkpoint_next.gml</script>
-    <script>scripts\scr_game_over.gml</script>
     <script>scripts\scr_challenge_next.gml</script>
     <script>scripts\draw_text_outline.gml</script>
-    <script>scripts\load_highscore_from_json_file.gml</script>
+    <script>scripts\scr_game_over.gml</script>
     <script>scripts\save_highscore_in_json_file.gml</script>
+    <script>scripts\load_highscore_from_json_file.gml</script>
     <script>scripts\scr_visual_effect.gml</script>
     <script>scripts\scr_theta.gml</script>
     <script>scripts\scr_change_speed.gml</script>
     <script>scripts\scr_speed_max.gml</script>
+    <script>scripts\ds_list_add_map.gml</script>
+    <script>scripts\show_highscore.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>

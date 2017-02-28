@@ -109,7 +109,7 @@ else if (achievement_time_69 == false &amp;&amp; global.ingame_time == 69)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_outline(room_width/2, room_height/2, "text", c_red, c_purple, fa_center, fa_middle, fnt_arial_16);
+            <string>//draw_text_outline(room_width/2, room_height/2, "text", c_red, c_purple, fa_center, fa_middle, fnt_arial_16);
 </string>
           </argument>
         </arguments>
