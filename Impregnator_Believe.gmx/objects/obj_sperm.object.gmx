@@ -41,7 +41,7 @@ device_tilt_x_max = 0.3;
 device_tilt_y_max = 0.3;
 
 speed_max = scr_speed_max();
-speed_reduction = speed_max/50;
+speed_reduction = speed_max/30;
 
 theta = 0;
 direction_diff_theta = 0;
@@ -123,8 +123,8 @@ speed_max = scr_speed_max();
 
 //if display_get_orientation() = display_landscape
 
-//naziv_objekta = object_get_name(object_index);
-//show_debug_message(naziv_objekta);
+/*naziv_objekta = object_get_name(object_index);
+show_debug_message(naziv_objekta);*/
 
 
 //MOVE
@@ -209,12 +209,12 @@ if (state == 'normal-new'){
     
     if (no_input){
         if (speed &gt; speed_reduction) speed -= speed_reduction;
-        else if (speed &lt; speed_reduction) speed = 0;
+        else if (speed &lt;= speed_reduction) speed = 0;
     }
 }
 if (!no_input){
     image_angle = theta;
-    tail.image_angle = direction;
+    //tail.image_angle = direction; //sigurica racunanje tail.image_angle //treba testirati na telefonu pa mozda vratiti ovaj... sumnjam da hoce trebati
     
     //jebeni sat na navijanje, ali simpa izgleda :)
     /*with(tail){
@@ -236,15 +236,12 @@ if (!no_input){
             scale_dir_counter = 0;
         }
     }
+    //tail.image_speed = speed_max/speed;
 }
+//image_blend = make_colour_hsv(255, 255, random(255)); 
 
-    /*if (image_angle != theta){
-        image_angle = theta;
-    }*/
-    
-    /*if (tail.image_angle != direction){
-        tail.image_angle = (tail.image_angle + direction) / 5;
-    }*/
+//tail.image_angle
+scr_tail_image_angle();
 
 //check room boundarioso (bottom, top)
 if (y &gt;= room_height - sprite_get_height(obj_sperm)/4) y = room_height - sprite_get_height(obj_sperm)/4;

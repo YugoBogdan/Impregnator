@@ -34,7 +34,8 @@ timeline_speed = 1.2;
 timeline_loop = true;
 controller_level1.enemy_limit += 10;
         
-timer = 750;
+timer = 15 * room_speed;
+//timer = 3 * room_speed;
 alarm[0] = timer;
 </string>
           </argument>
@@ -59,11 +60,6 @@ alarm[0] = timer;
           <argument>
             <kind>1</kind>
             <string>instance_destroy();
-timeline_index = tl_level1;
-timeline_position = 0;
-timeline_running = true;
-timeline_speed = 1;
-timeline_loop = true;
 
 with(obj_enemy_parent){
     destroy_event = false;
@@ -74,7 +70,13 @@ with(obj_powerup_parent){
     instance_destroy();
 }
 
+//timeline restoration
 controller_level1.enemy_limit -= 10;
+timeline_index = tl_level1;
+timeline_position = 0;
+timeline_running = true;
+timeline_speed = 1;
+timeline_loop = true;
 
 scr_challenge_next(points_worth);
 </string>

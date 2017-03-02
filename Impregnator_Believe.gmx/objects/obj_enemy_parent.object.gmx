@@ -28,14 +28,15 @@
             <string>image_speed = 0;
 image_index = irandom(image_number-1);
 
-destroy_event = true;
+destroy_event = true; //trigger classic destruction events?
+self_destroy = false; //destruction in progress?
 
-spd = 2;
-orientation = point_direction(x,y,irandom(room_width),irandom(room_height));
-motion_set(orientation,spd);
+spd = 3;
+scr_orientation_variables();
 
-x_spd = lengthdir_x(spd, orientation);
-y_spd = lengthdir_y(spd, orientation);
+indicator_x = 0;
+indicator_y = 0;
+indicator_subimg = 1;
 </string>
           </argument>
         </arguments>
@@ -64,6 +65,60 @@ if (place_meeting(x,y,obj_sperm)){
     collided = 1;
 }else{
     collided = 0;
+}
+
+//DESTROY when out of room
+if (y &gt; room_height + initial_position_offset) self_destroy = true;
+else if (y &lt; -initial_position_offset) self_destroy = true;
+if (x &gt; room_width + initial_position_offset) self_destroy = true;
+else if (x &lt; -initial_position_offset) self_destroy = true;
+
+if (self_destroy) instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (self_destroy == false){
+    draw_self();
+
+    if !(x &gt; view_xview[1] &amp;&amp;
+        x &lt; view_xview[1] + view_wview[1] &amp;&amp;
+        y &gt; view_yview[1] &amp;&amp;
+        y &lt; view_yview[1] + view_hview[1])
+    {
+        if (x &gt; view_xview[1] + view_wview[1])
+        {
+            indicator_y = y;
+            indicator_x = view_xview[1] + view_wview[1];
+            indicator_subimg = 1;
+        }
+        else if (x &lt; view_xview[1])
+        {
+            indicator_y = y;
+            indicator_x = view_xview[1];
+            indicator_subimg = 2;
+        }
+        
+        draw_sprite(spr_indicator_enemy,indicator_subimg,indicator_x,indicator_y);
+    }
 }
 </string>
           </argument>

@@ -17,6 +17,7 @@
     </sprites>
     <sprites name="Effects">
       <sprite>sprites\spr_defensive_cell_eyes</sprite>
+      <sprite>sprites\spr_indicator_enemy</sprite>
     </sprites>
     <sprites name="Powerups">
       <sprite>sprites\spr_sun</sprite>
@@ -26,6 +27,7 @@
     <sprites name="Player">
       <sprite>sprites\spr_sperm</sprite>
       <sprite>sprites\spr_sperm_mask</sprite>
+      <sprite>sprites\spr_tail_new_shit</sprite>
       <sprite>sprites\spr_tail</sprite>
     </sprites>
     <sprites name="Auxilliary">
@@ -46,6 +48,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
+    <background>background\bgr_pink_pic</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path0</path>
@@ -68,6 +71,8 @@
     <script>scripts\scr_speed_max.gml</script>
     <script>scripts\ds_list_add_map.gml</script>
     <script>scripts\show_highscore.gml</script>
+    <script>scripts\scr_tail_image_angle.gml</script>
+    <script>scripts\scr_orientation_variables.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -90,11 +95,15 @@
     <objects name="Controllers">
       <object>objects\game_ctrl</object>
       <object>objects\controller_level1</object>
-      <object>objects\checkpoint_controller</object>
-      <object>objects\survival_controller</object>
       <object>objects\achievement_ctrl</object>
       <object>objects\highscore_controller</object>
       <object>objects\rm_spd_ctrl</object>
+      <objects name="challenges">
+        <object>objects\challenge_ctrl_parent</object>
+        <object>objects\boss_ctrl</object>
+        <object>objects\survival_controller</object>
+        <object>objects\checkpoint_controller</object>
+      </objects>
     </objects>
     <objects name="Player">
       <object>objects\obj_sperm</object>

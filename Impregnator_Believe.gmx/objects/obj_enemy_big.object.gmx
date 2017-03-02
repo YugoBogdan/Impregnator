@@ -36,6 +36,9 @@ image_yscale = 1.4; //prev 1.5
 
 state = 1;
 tap_counter = 0;
+
+alarm[1] = 120; //movement_transition --- change direction
+movement_transition = false;
 </string>
           </argument>
         </arguments>
@@ -60,9 +63,33 @@ tap_counter = 0;
             <kind>1</kind>
             <string>///create another one
 if (destroy_event){
-    scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
+    //scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>movement_transition = true;
+course = irandom(360);
 </string>
           </argument>
         </arguments>
@@ -85,40 +112,20 @@ if (destroy_event){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///MOVE and DESTROY
+            <string>///STATES
 
 event_inherited();
 
-x += x_spd;
-y += y_spd;
+if (movement_transition){
+    motion_add(course,spd/10);
+    if (speed &gt;= spd){
+        //motion_set(course,spd);
+        alarm[1] = 120;
+        movement_transition = false;
+    }
+}
 
-if (y &gt; room_height + sprite_height/2){
-    instance_destroy();
-}
-if (x &gt; room_width + sprite_width/2){
-    instance_destroy();
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///STATES
+
 
 //OPIS
 //ponistiti playerovo kretanje
@@ -225,11 +232,7 @@ tap_counter += 1;
             <kind>1</kind>
             <string>///fokin draw event action
 
-draw_self();
-
-/*if(place_meeting(x,y,obj_sperm)){
-    scr_damage();
-}*/
+event_inherited();
 
 if (state == 2){
     draw_text(x,y-50,"Now's your chance! Not so taste but what the hack...");

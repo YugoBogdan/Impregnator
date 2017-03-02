@@ -27,13 +27,13 @@
             <kind>1</kind>
             <string>event_inherited();
 
-points_worth = 10;
-
 image_speed = 0.5;
 
-spd = 3;
+spd = 4;
+scr_orientation_variables();
 
-destruction_timer = 480;
+destruction_timer = 16 * room_speed;
+
 alarm[0] = destruction_timer;
 </string>
           </argument>
@@ -57,7 +57,10 @@ alarm[0] = destruction_timer;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_challenge_next(points_worth);
+            <string>if (instance_exists(boss_ctrl)){
+    with(boss_ctrl) instance_destroy();
+}
+
 scr_collect("Good manuveuring boy! (or girl, ofc)",10,60);
 </string>
           </argument>
@@ -119,7 +122,7 @@ if (collided){
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -136,10 +139,9 @@ if (collided){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_arial_16);
-draw_text(20,70,"Just: " + string(destruction_timer/room_speed) + " more!");
+            <string>event_inherited();
 
-
+draw_set_font(fnt_arial_16);
 draw_text(x,y,"18+");
 </string>
           </argument>
