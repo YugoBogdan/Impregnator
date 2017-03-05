@@ -109,6 +109,7 @@
       <object>objects\obj_sperm</object>
       <object>objects\obj_tail</object>
       <object>objects\obj_sperm_menu</object>
+      <object>objects\obj_camera</object>
     </objects>
     <objects name="Powerups">
       <object>objects\obj_powerup_parent</object>
