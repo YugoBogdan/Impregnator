@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,41 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///initialize
-//if (!timeline_running){
-global.timeline_loop_counter = 0;
-timeline_index = tl_level1;
-timeline_position = 0;
-timeline_running = true;
-timeline_speed = 1;
-timeline_loop = true;
-
-global.ingame_time = 0;
-global.points = 0;
-global.challenges_count = 0;
-
-enemy_limit = 15;
-
-challenge = ds_list_create();
-ds_list_add(challenge,'checkpoint','boss','survival');
-current_challenge = ds_list_find_value(challenge,0);
-challenge_up_and_running = false;
-
-if(!instance_exists(input_screen)){
-    instance_create(room_width/2,room_height/2,input_screen);
-}
-if(!instance_exists(finger)){
-    instance_create(0,0,finger);
-}
-if(!instance_exists(achievement_ctrl)){
-    instance_create(0,0,achievement_ctrl);
-}
-/*if(!instance_exists(rm_spd_ctrl)){
-    instance_create(0,0,rm_spd_ctrl);
-}*/
-
-
-
+            <string>name = "";
+name_input_active = false;
+done = false;
 </string>
           </argument>
         </arguments>
@@ -82,56 +50,50 @@ if(!instance_exists(achievement_ctrl)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///ingame_time + instance check number
-global.ingame_time += 1/room_speed;
+            <string>if (name_input_active == true){
+    if (keyboard_check_pressed(ord("A"))) name = name + "A";
+    if (keyboard_check_pressed(ord("B"))) name = name + "B";
+    if (keyboard_check_pressed(ord("C"))) name = name + "C";
+    if (keyboard_check_pressed(ord("D"))) name = name + "D";
+    if (keyboard_check_pressed(ord("E"))) name = name + "E";
+    if (keyboard_check_pressed(ord("F"))) name = name + "F";
+    if (keyboard_check_pressed(ord("G"))) name = name + "G";
+    if (keyboard_check_pressed(ord("H"))) name = name + "H";
+    if (keyboard_check_pressed(ord("I"))) name = name + "I";
+    if (keyboard_check_pressed(ord("J"))) name = name + "J";
+    if (keyboard_check_pressed(ord("K"))) name = name + "K";
+    if (keyboard_check_pressed(ord("L"))) name = name + "L";
+    if (keyboard_check_pressed(ord("M"))) name = name + "M";
+    if (keyboard_check_pressed(ord("N"))) name = name + "N";
+    if (keyboard_check_pressed(ord("O"))) name = name + "O";
+    if (keyboard_check_pressed(ord("P"))) name = name + "P";
+    if (keyboard_check_pressed(ord("Q"))) name = name + "Q";
+    if (keyboard_check_pressed(ord("R"))) name = name + "R";
+    if (keyboard_check_pressed(ord("S"))) name = name + "S";
+    if (keyboard_check_pressed(ord("T"))) name = name + "T";
+    if (keyboard_check_pressed(ord("U"))) name = name + "U";
+    if (keyboard_check_pressed(ord("V"))) name = name + "V";
+    if (keyboard_check_pressed(ord("W"))) name = name + "W";
+    if (keyboard_check_pressed(ord("Y"))) name = name + "X";
+    if (keyboard_check_pressed(ord("X"))) name = name + "Y";
+    if (keyboard_check_pressed(ord("Z"))) name = name + "Z";                               
 
-//instance number check
-
-if (instance_number(obj_enemy_parent) &gt;= enemy_limit){
-    timeline_index = tl_level1;
-    timeline_running = false;
-} else if (instance_number(obj_enemy_parent) &amp;&amp; timeline_running = false){
-    timeline_running = true;
+    if (keyboard_check_pressed(vk_enter)){
+        name_input_active = false;
+        done = true;
+    }
 }
 
-//challegne controller
-if (!challenge_up_and_running){
-    switch (current_challenge){
-        case 'checkpoint':
-        if (!instance_exists(checkpoint_controller)){
-            instance_create(0,0,checkpoint_controller);
-            challenge_up_and_running = true;
-            global.challenges_count += 1;
-        }
-        break;
-
-        case 'survival':
-        if (!instance_exists(survival_controller)){
-            instance_create(0,0,survival_controller);
-            challenge_up_and_running = true;
-            global.challenges_count += 1;
-        }
-        break;
-        
-        case 'boss':
-        if (!instance_exists(boss_ctrl)){
-            instance_create(room_width/2,0,boss_ctrl);
-            challenge_up_and_running = true;
-            global.challenges_count += 1;        
-        }
-        break;
-        
-        default:
-        show_message("error");
-        break;
-    }
+if (done == true){
+    ds_map_add(obj_highscore_this.this_highscore,"name",name);
+    obj_highscore_this.alarm[0] = 1;
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -148,13 +110,15 @@ if (!challenge_up_and_running){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_outline(20,20,"Existence: " + string(floor(global.ingame_time)),game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_16);
-draw_text_outline(20,45,"Points: " + string(global.points),game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_16);
+            <string>//if (name_input_active == true){
+    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2,"PLEASE ENTER YOUR NAME:",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
+    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2+30,string(name),game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_16);
+    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2+60,"(press ENTER when finished)",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
 
-//draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));
-//draw_set_halign(fa_center);
 
-//draw_path(path0, room_width/2, room_height/2, true);
+
+
+//}
 </string>
           </argument>
         </arguments>

@@ -8,7 +8,7 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,56 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_enemy_create('top',obj_boss);
+            <string>//ds_list_add(highscore_list,this_highscore);
+var highscore_list = ds_map_create();
+ds_map_clear(highscore_list);
+if(file_exists("highscore.json")){
+    highscore_list_previous = load_highscore_from_json_file();
+    highscore_list = highscore_list_previous;
+}
 
-points_worth = 10;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>scr_challenge_next(points_worth);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>gui_text = "Just: " + string(floor(obj_boss.destruction_timer/room_speed+0.99)) + " more!";
-event_inherited();
+ds_map_add_map(highscore_list,string(ds_map_size(highscore_list)+1),this_highscore);
+
+var json_file = file_text_open_write("highscore.json");
+file_text_write_string(json_file, json_encode(highscore_list));
+file_text_close(json_file);
+
+show_highscore();
+
+room_goto(rm_menu);
 </string>
           </argument>
         </arguments>

@@ -97,6 +97,8 @@
       <object>objects\controller_level1</object>
       <object>objects\achievement_ctrl</object>
       <object>objects\highscore_controller</object>
+      <object>objects\keyboard_ctrl</object>
+      <object>objects\obj_highscore_this</object>
       <object>objects\rm_spd_ctrl</object>
       <objects name="challenges">
         <object>objects\challenge_ctrl_parent</object>

@@ -33,6 +33,9 @@ alarm[0] = 90; // stop drawing text
 device_mouse_dbclick_enable(false);
 
 cheats = false;
+
+text_fill = make_colour_rgb(100,100,100);
+text_stroke = make_colour_rgb(55,55,55);
 </string>
           </argument>
         </arguments>

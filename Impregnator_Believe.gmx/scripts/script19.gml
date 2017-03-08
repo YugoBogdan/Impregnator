@@ -22,20 +22,26 @@ ds_map_add(this_highscore,"points",string(points));
 ds_map_add(this_highscore,"challenges",string(challenges_count));
 ds_map_add(this_highscore,"date",date);
 
-//cuvanje gornjig podataka
-if (!instance_exists(obj_highscore_this)){
-    instance_create(0,0,obj_highscore_this);
+//ds_list_add(highscore_list,this_highscore);
+var highscore_list = ds_map_create();
+ds_map_clear(highscore_list);
+if(file_exists("highscore.json")){
+    highscore_list_previous = load_highscore_from_json_file();
+    highscore_list = highscore_list_previous;
 }
-obj_highscore_this.this_highscore = this_highscore;
 
-//unosenje imena
+ds_map_add_map(highscore_list,string(ds_map_size(highscore_list)+1),this_highscore);
 
-if (!instance_exists(keyboard_ctrl)){
+var json_file = file_text_open_write("highscore.json");
+file_text_write_string(json_file, json_encode(highscore_list));
+file_text_close(json_file);
+
+//ocitavanje poslednjeg rezultata
+show_highscore();
+
+
+/*if (!instance_exists(keyboard_ctrl)){
     keyboard = instance_create(0,0,keyboard_ctrl);
     keyboard.name_input_active = true;
-}
-
-
-
-
+}*/
 
