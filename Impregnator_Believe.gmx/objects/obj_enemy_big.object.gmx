@@ -145,7 +145,7 @@ if (state == 1){
         state = 2;
         sprite_index = spr_enemy_big_damaged;
     }else if (collided){
-        scr_game_over();
+        game_over();
     }
     
 }

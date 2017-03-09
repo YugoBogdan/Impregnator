@@ -1,4 +1,4 @@
-///scr_game_over();
+///game_over();
 
 if (!game_ctrl.cheats){
     if (instance_exists(obj_sperm)){
@@ -8,7 +8,7 @@ if (!game_ctrl.cheats){
         }
     }
     
-    save_highscore_in_json_file();
+    highscore_save_in_json_file();
     
     //room_goto(rm_menu);
 }    

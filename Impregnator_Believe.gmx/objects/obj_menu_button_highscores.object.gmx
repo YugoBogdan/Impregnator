@@ -53,7 +53,7 @@ button_text = "Hail these sprems!";
           <argument>
             <kind>1</kind>
             <string>///game_end();
-room_goto(rm_credits);
+room_goto(rm_highscores);
 </string>
           </argument>
         </arguments>

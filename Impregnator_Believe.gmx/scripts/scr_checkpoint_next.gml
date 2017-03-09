@@ -3,7 +3,6 @@
 checkpoint_controller.checkpoint_counter += 1;
 
 if (checkpoint_controller.checkpoint_counter < checkpoint_controller.checkpoint_max){
-    //instance_create(irandom(room_width),irandom(room_height),obj_checkpoint);
     x_pseudo_random = 20 + irandom(room_width - 20);
     y_pseudo_random = 50 + irandom(room_height - 50);
     var checkpoint = instance_create(x_pseudo_random,y_pseudo_random,obj_checkpoint);

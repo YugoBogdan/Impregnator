@@ -29,9 +29,8 @@
 
 points_worth = 5;
 
-checkpoint_total = 0;
-checkpoint_counter = 0;
-checkpoint_max = 6;
+checkpoint_counter = -1;
+checkpoint_max = 5;
 
 scr_checkpoint_next();
 </string>

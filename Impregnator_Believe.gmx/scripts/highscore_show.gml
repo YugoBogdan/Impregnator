@@ -1,7 +1,7 @@
-///show_highscore();
+///highscore_show();
 
-var lista = load_highscore_from_json_file();
-var iz_liste = ds_map_find_value(lista,string(ds_map_size(lista)));
+var lista = highscore_load_from_json_file();
+iz_liste = ds_map_find_value(lista,string(ds_map_size(lista)));
 
 var string_total_score = "TOTAL SCORE: " + string(ds_map_find_value(iz_liste,"total_score"));
 var string_existence = "# +Existed: " + string(ds_map_find_value(iz_liste,"existence")) + " seconds!";

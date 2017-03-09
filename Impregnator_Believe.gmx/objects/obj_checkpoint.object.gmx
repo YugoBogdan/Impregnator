@@ -31,7 +31,6 @@ event_inherited();
 
 image_speed = 0;
 state = 'normal';
-checkpoint_controller.checkpoint_total += 1;
 </string>
           </argument>
         </arguments>

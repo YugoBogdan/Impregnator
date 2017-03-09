@@ -63,7 +63,7 @@ indicator_subimg = 1;
 
 if (place_meeting(x,y,obj_sperm)){
     collided = 1;
-    instance_destroy()
+    instance_destroy();
 }else{
     collided = 0;
 }

@@ -1,4 +1,4 @@
-///save_highscore_in_json_file()
+///highscore_save_in_json_file()
 
 //date key value
 var date_base = date_current_datetime();

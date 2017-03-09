@@ -4,7 +4,7 @@
   <width>480</width>
   <height>854</height>
   <vsnap>32</vsnap>
-  <hsnap>32</hsnap>
+  <hsnap>16</hsnap>
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
@@ -53,6 +53,11 @@
   <instances>
     <instance objName="obj_sperm_menu" x="256" y="640" name="inst_C7A72034" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_menu_egg" x="256" y="640" name="inst_41AA0786" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_highscore_place_name" x="80" y="32" name="inst_807BADA7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="highscore_controller" x="0" y="0" name="inst_3D1D0236" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_highscore_place_score" x="192" y="32" name="inst_23C798C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_highscore_place_date" x="272" y="32" name="inst_C489ACA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_highscore_place_position" x="32" y="32" name="inst_0CE2EA0C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

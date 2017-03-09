@@ -29,7 +29,7 @@
 var highscore_list = ds_map_create();
 ds_map_clear(highscore_list);
 if(file_exists("highscore.json")){
-    highscore_list_previous = load_highscore_from_json_file();
+    highscore_list_previous = highscore_load_from_json_file();
     highscore_list = highscore_list_previous;
 }
 
@@ -39,9 +39,7 @@ var json_file = file_text_open_write("highscore.json");
 file_text_write_string(json_file, json_encode(highscore_list));
 file_text_close(json_file);
 
-show_highscore();
-
-room_goto(rm_menu);
+room_goto(rm_highscores);
 </string>
           </argument>
         </arguments>
