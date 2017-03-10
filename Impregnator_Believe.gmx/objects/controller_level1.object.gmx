@@ -42,7 +42,7 @@ enemy_limit = 15;
 
 challenge = ds_list_create();
 ds_list_add(challenge,'checkpoint','boss','survival');
-current_challenge = ds_list_find_value(challenge,0);
+current_challenge = ds_list_find_value(challenge,1);
 challenge_up_and_running = false;
 
 if(!instance_exists(input_screen)){

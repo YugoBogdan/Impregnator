@@ -22,6 +22,10 @@ switch (position){
         pos_x = room_width + position_offset;
         pos_y = irandom(room_height);
         break;
+    case 'self':
+        pos_x = x;
+        pos_y = y;
+        break;
     default:
         pos_x = 0 - position_offset;
         pos_y = 0 - position_offset;
@@ -31,3 +35,4 @@ switch (position){
 var enemy = instance_create(pos_x,pos_y,object);
 enemy.position = position;
 enemy.initial_position_offset = position_offset;
+return enemy;

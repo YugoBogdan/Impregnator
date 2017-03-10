@@ -33,6 +33,9 @@ event_inherited();
 
 image_xscale = 1.4; //prev 1.5
 image_yscale = 1.4; //prev 1.5
+destroy_color = c_blue;
+destroy_duration = 7;
+destroy_dimensions = 'this';
 
 state = 1;
 tap_counter = 0;
@@ -62,6 +65,9 @@ movement_transition = false;
           <argument>
             <kind>1</kind>
             <string>///create another one
+
+event_inherited();
+
 if (destroy_event){
     //scr_enemy_create(irandom(room_width),-sprite_get_height(self),obj_enemy_big,x_spd,y_spd);
 }

@@ -18,6 +18,7 @@
     <sprites name="Effects">
       <sprite>sprites\spr_defensive_cell_eyes</sprite>
       <sprite>sprites\spr_indicator_enemy</sprite>
+      <sprite>sprites\spr_indicator_checkpoint</sprite>
     </sprites>
     <sprites name="Powerups">
       <sprite>sprites\spr_sun</sprite>
@@ -75,6 +76,8 @@
     <script>scripts\ds_list_add_map.gml</script>
     <script>scripts\scr_tail_image_angle.gml</script>
     <script>scripts\scr_orientation_variables.gml</script>
+    <script>scripts\backspace_function.gml</script>
+    <script>scripts\draw_orientation_indicator_when_outside_view.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>

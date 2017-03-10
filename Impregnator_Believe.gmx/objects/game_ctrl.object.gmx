@@ -36,6 +36,8 @@ cheats = false;
 
 text_fill = make_colour_rgb(100,100,100);
 text_stroke = make_colour_rgb(55,55,55);
+
+last_used_name = "";
 </string>
           </argument>
         </arguments>
@@ -209,6 +211,33 @@ immersion_stop();
           <argument>
             <kind>1</kind>
             <string>if (room != rm_menu) room_goto(rm_menu);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (room == rm_menu){
+    room_goto(rm_arena);
+}else if (room == rm_highscores){
+    room_goto(rm_menu);    
+}
 </string>
           </argument>
         </arguments>

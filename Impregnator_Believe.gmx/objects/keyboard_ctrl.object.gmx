@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>name = "";
+            <string>name = game_ctrl.last_used_name;
 name_input_active = false;
 done = false;
 </string>
@@ -51,33 +51,41 @@ done = false;
           <argument>
             <kind>1</kind>
             <string>if (name_input_active == true){
-    if (keyboard_check_pressed(ord("A"))) name = name + "A";
-    if (keyboard_check_pressed(ord("B"))) name = name + "B";
-    if (keyboard_check_pressed(ord("C"))) name = name + "C";
-    if (keyboard_check_pressed(ord("D"))) name = name + "D";
-    if (keyboard_check_pressed(ord("E"))) name = name + "E";
-    if (keyboard_check_pressed(ord("F"))) name = name + "F";
-    if (keyboard_check_pressed(ord("G"))) name = name + "G";
-    if (keyboard_check_pressed(ord("H"))) name = name + "H";
-    if (keyboard_check_pressed(ord("I"))) name = name + "I";
-    if (keyboard_check_pressed(ord("J"))) name = name + "J";
-    if (keyboard_check_pressed(ord("K"))) name = name + "K";
-    if (keyboard_check_pressed(ord("L"))) name = name + "L";
-    if (keyboard_check_pressed(ord("M"))) name = name + "M";
-    if (keyboard_check_pressed(ord("N"))) name = name + "N";
-    if (keyboard_check_pressed(ord("O"))) name = name + "O";
-    if (keyboard_check_pressed(ord("P"))) name = name + "P";
-    if (keyboard_check_pressed(ord("Q"))) name = name + "Q";
-    if (keyboard_check_pressed(ord("R"))) name = name + "R";
-    if (keyboard_check_pressed(ord("S"))) name = name + "S";
-    if (keyboard_check_pressed(ord("T"))) name = name + "T";
-    if (keyboard_check_pressed(ord("U"))) name = name + "U";
-    if (keyboard_check_pressed(ord("V"))) name = name + "V";
-    if (keyboard_check_pressed(ord("W"))) name = name + "W";
-    if (keyboard_check_pressed(ord("Y"))) name = name + "X";
-    if (keyboard_check_pressed(ord("X"))) name = name + "Y";
-    if (keyboard_check_pressed(ord("Z"))) name = name + "Z";                               
-
+    if (string_length(name) &lt; 10){
+        if (keyboard_check_pressed(ord("A"))) name = name + "A";
+        if (keyboard_check_pressed(ord("B"))) name = name + "B";
+        if (keyboard_check_pressed(ord("C"))) name = name + "C";
+        if (keyboard_check_pressed(ord("D"))) name = name + "D";
+        if (keyboard_check_pressed(ord("E"))) name = name + "E";
+        if (keyboard_check_pressed(ord("F"))) name = name + "F";
+        if (keyboard_check_pressed(ord("G"))) name = name + "G";
+        if (keyboard_check_pressed(ord("H"))) name = name + "H";
+        if (keyboard_check_pressed(ord("I"))) name = name + "I";
+        if (keyboard_check_pressed(ord("J"))) name = name + "J";
+        if (keyboard_check_pressed(ord("K"))) name = name + "K";
+        if (keyboard_check_pressed(ord("L"))) name = name + "L";
+        if (keyboard_check_pressed(ord("M"))) name = name + "M";
+        if (keyboard_check_pressed(ord("N"))) name = name + "N";
+        if (keyboard_check_pressed(ord("O"))) name = name + "O";
+        if (keyboard_check_pressed(ord("P"))) name = name + "P";
+        if (keyboard_check_pressed(ord("Q"))) name = name + "Q";
+        if (keyboard_check_pressed(ord("R"))) name = name + "R";
+        if (keyboard_check_pressed(ord("S"))) name = name + "S";
+        if (keyboard_check_pressed(ord("T"))) name = name + "T";
+        if (keyboard_check_pressed(ord("U"))) name = name + "U";
+        if (keyboard_check_pressed(ord("V"))) name = name + "V";
+        if (keyboard_check_pressed(ord("W"))) name = name + "W";
+        if (keyboard_check_pressed(ord("Y"))) name = name + "X";
+        if (keyboard_check_pressed(ord("X"))) name = name + "Y";
+        if (keyboard_check_pressed(ord("Z"))) name = name + "Z";                               
+    }else if (string_length(name) &gt; 10){
+        name = backspace_function(name);
+    }
+        
+    if (keyboard_check_pressed(vk_backspace)){
+        name = backspace_function(name);
+    }
+    
     if (keyboard_check_pressed(vk_enter)){
         name_input_active = false;
         done = true;
@@ -87,6 +95,7 @@ done = false;
 if (done == true){
     ds_map_add(obj_highscore_this.this_highscore,"name",name);
     obj_highscore_this.alarm[0] = 1;
+    game_ctrl.last_used_name = name;
 }
 </string>
           </argument>

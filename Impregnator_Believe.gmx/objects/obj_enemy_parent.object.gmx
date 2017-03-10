@@ -30,6 +30,9 @@ image_index = irandom(image_number-1);
 
 destroy_event = true; //trigger classic destruction events?
 self_destroy = false; //destruction in progress?
+destroy_color = c_purple;
+destroy_duration = 1;
+destroy_dimensions = 0;
 
 spd = 3;
 scr_orientation_variables();
@@ -37,6 +40,29 @@ scr_orientation_variables();
 indicator_x = 0;
 indicator_y = 0;
 indicator_subimg = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_visual_effect(ef_firework,destroy_color,destroy_duration,destroy_dimensions);
 </string>
           </argument>
         </arguments>
@@ -69,10 +95,11 @@ if (place_meeting(x,y,obj_sperm)){
 }
 
 //DESTROY when out of room
-if (y &gt; room_height + initial_position_offset) self_destroy = true;
-else if (y &lt; -initial_position_offset) self_destroy = true;
-if (x &gt; room_width + initial_position_offset) self_destroy = true;
-else if (x &lt; -initial_position_offset) self_destroy = true;
+var offset = initial_position_offset;
+if (y &gt; room_height + offset) self_destroy = true;
+else if (y &lt; -offset) self_destroy = true;
+if (x &gt; room_width + offset) self_destroy = true;
+else if (x &lt; -offset) self_destroy = true;
 
 if (self_destroy) instance_destroy();
 </string>
@@ -100,45 +127,7 @@ if (self_destroy) instance_destroy();
             <string>if (self_destroy == false){
     draw_self();
 
-    if !(x &gt; view_xview[1] &amp;&amp;
-        x &lt; view_xview[1] + view_wview[1] /*&amp;&amp;
-        y &gt; view_yview[1] &amp;&amp;
-        y &lt; view_yview[1] + view_hview[1]*/)
-    {
-        if (x &gt; view_xview[1] + view_wview[1])
-        {
-            indicator_y = y;
-            indicator_x = view_xview[1] + view_wview[1];
-            indicator_subimg = 0;
-        }
-        else if (x &lt; view_xview[1])
-        {
-            indicator_y = y;
-            indicator_x = view_xview[1];
-            indicator_subimg = 1;
-        }
-        
-        draw_sprite(spr_indicator_enemy,indicator_subimg,indicator_x,indicator_y);
-    }
-    
-    if !(y &gt; view_yview[1] &amp;&amp;
-        y &lt; view_yview[1] + view_hview[1])
-    {
-        if (y &gt; view_yview[1] + view_hview[1])
-        {
-            indicator_x = x;
-            indicator_y = view_yview[1] + view_hview[1];
-            indicator_subimg = 2;
-        }
-        else if (y &lt; view_yview[1])
-        {
-            indicator_x = x;
-            indicator_y = view_yview[1];
-            indicator_subimg = 3;
-        }
-        
-        draw_sprite(spr_indicator_enemy,indicator_subimg,indicator_x,indicator_y);
-    }
+    draw_orientation_indicator_when_outside_view();
 }
 </string>
           </argument>

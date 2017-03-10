@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>effect_create_above(kind,x+irandom(20)*power(-1,irandom(2)),y+irandom(20)*power(-1,irandom(2)),10,color);
+            <string>effect_create_above(kind,x+irandom(width*0.9)*power(-1,irandom(2)),y+irandom(height*0.9)*power(-1,irandom(2)),10,color);
 </string>
           </argument>
         </arguments>

@@ -60,6 +60,8 @@ alarm[1] = 1; //theta
             <kind>1</kind>
             <string>///create another one
 
+event_inherited();
+
 if (destroy_event){
     scr_enemy_create(position,obj_defensive_cell);
 }
@@ -133,8 +135,6 @@ with(tail){
         scale_dir_counter = 0;
     }
 }
-
-
 
 //game over
 if (collided){
