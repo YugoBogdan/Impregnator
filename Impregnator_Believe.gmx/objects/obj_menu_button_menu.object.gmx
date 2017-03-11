@@ -28,7 +28,7 @@
             <string>///Initialize
 event_inherited()
 
-button_text = "Start";
+button_text = "Menu";
 image_blend = make_colour_hsv(140, 176, 159);
 </string>
           </argument>
@@ -54,7 +54,7 @@ image_blend = make_colour_hsv(140, 176, 159);
             <kind>1</kind>
             <string>///room_goto_next();
 
-room_goto(rm_arena);
+room_goto(rm_menu);
 </string>
           </argument>
         </arguments>

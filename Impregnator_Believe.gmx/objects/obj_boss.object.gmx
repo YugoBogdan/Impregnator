@@ -73,6 +73,7 @@ scr_collect("Good manuveuring boy! (or girl, ofc)",10,60);
 scr_visual_effect(ef_firework,c_red,30,'this');
 scr_visual_effect(ef_firework,c_white,5,'this');
 scr_visual_effect(ef_spark,c_white,75,'this');
+
 </string>
           </argument>
         </arguments>
@@ -98,6 +99,9 @@ scr_visual_effect(ef_spark,c_white,75,'this');
             <string>///shoot
 shoot_counter = 0;
 state = 'shoot';
+//audio_play_sound_if_not_muted(snd_splash,5,0);
+audio_play_sound_at(snd_splash, x, y, 0, 100, 800, 1, false, 5);
+
 </string>
           </argument>
         </arguments>
@@ -145,10 +149,15 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>///STEP
-//if (obj_sperm.device_tilt_z)
+//Collision
 
-event_inherited();
+if (place_meeting(x,y,obj_sperm)){
+    collided = 1;
+}else{
+    collided = 0;
+}
 
+//MOVE
 destruction_timer -= 1;
 if(instance_exists(obj_sperm)){
     move_towards_point(obj_sperm.x,obj_sperm.y,spd);

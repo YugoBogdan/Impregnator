@@ -102,6 +102,8 @@ if(!instance_exists(obj_button_right_swipe)){
 scr_visual_effect(ef_firework,c_orange,45);
 scr_visual_effect(ef_firework,c_red,30);
 
+audio_play_sound_if_not_muted(snd_disappoint,10,0);
+
 </string>
           </argument>
         </arguments>

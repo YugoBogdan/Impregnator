@@ -28,11 +28,7 @@
             <string>///initialize
 //if (!timeline_running){
 global.timeline_loop_counter = 0;
-timeline_index = tl_level1;
-timeline_position = 0;
-timeline_running = true;
-timeline_speed = 1;
-timeline_loop = true;
+scr_start_timeline(tl_level1);
 
 global.ingame_time = 0;
 global.points = 0;
@@ -41,8 +37,9 @@ global.challenges_count = 0;
 enemy_limit = 15;
 
 challenge = ds_list_create();
-ds_list_add(challenge,'checkpoint','boss','survival');
-current_challenge = ds_list_find_value(challenge,1);
+ds_list_add(challenge,'checkpoint','survival','checkpoint','boss','GG');
+current_challenge_number = 0;
+current_challenge_type = ds_list_find_value(challenge,current_challenge_number);
 challenge_up_and_running = false;
 
 if(!instance_exists(input_screen)){
@@ -96,7 +93,7 @@ if (instance_number(obj_enemy_parent) &gt;= enemy_limit){
 
 //challegne controller
 if (!challenge_up_and_running){
-    switch (current_challenge){
+    switch (current_challenge_type){
         case 'checkpoint':
         if (!instance_exists(checkpoint_controller)){
             instance_create(0,0,checkpoint_controller);
@@ -119,6 +116,12 @@ if (!challenge_up_and_running){
             challenge_up_and_running = true;
             global.challenges_count += 1;        
         }
+        break;
+        
+        case 'GG':
+        show_message("IMPREGNATION COMPLETE" + "#Congratulations! You have beaten the DEMO" + "#We will loop these challenges for now... :)" + "#I hope you've enjoyed it :)");
+        current_challenge_number = -1;
+        scr_challenge_next(20);
         break;
         
         default:

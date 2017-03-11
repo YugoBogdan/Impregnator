@@ -27,11 +27,7 @@
             <kind>1</kind>
             <string>points_worth = 5;
 
-timeline_index = tl_level1;
-timeline_position = 0;
-timeline_running = true;
-timeline_speed = 1.2;
-timeline_loop = true;
+scr_start_timeline(tl_level1,1.2);
 controller_level1.enemy_limit += 10;
         
 timer = 15 * room_speed;

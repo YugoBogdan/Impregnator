@@ -28,8 +28,8 @@
             <string>///Initialize
 event_inherited()
 
-button_text = "Start";
-image_blend = make_colour_hsv(140, 176, 159);
+button_text = "Options";
+image_blend = make_colour_hsv(111, 132, 59);
 </string>
           </argument>
         </arguments>
@@ -54,7 +54,7 @@ image_blend = make_colour_hsv(140, 176, 159);
             <kind>1</kind>
             <string>///room_goto_next();
 
-room_goto(rm_arena);
+room_goto(rm_options);
 </string>
           </argument>
         </arguments>

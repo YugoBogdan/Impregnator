@@ -63,6 +63,7 @@ state = 'normal';
         scr_checkpoint_next();
         scr_visual_effect(ef_spark,c_red,30);
         instance_destroy();
+        audio_play_sound(snd_coin,11,0);
     }
 }
 

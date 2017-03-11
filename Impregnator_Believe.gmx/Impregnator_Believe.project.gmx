@@ -4,7 +4,23 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_bgr_music_river</sound>
+    <sound>sound\snd_splash</sound>
+    <sound>sound\snd_splash_short</sound>
+    <sound>sound\snd_disappoint</sound>
+    <sound>sound\snd_applause_start</sound>
+    <sound>sound\snd_applause_loop</sound>
+    <sound>sound\snd_applause_end</sound>
+    <sound>sound\snd_coin</sound>
+    <sounds name="non_commercial">
+      <sound>sound\snd_hooray_noncomercial</sound>
+      <sound>sound\snd_soundtrack_1</sound>
+      <sound>sound\snd_soundtrack_2</sound>
+      <sound>sound\snd_soundtrack_3</sound>
+      <sound>sound\snd_soundtrack_4</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Enemies">
       <sprite>sprites\spr_defensive_cell</sprite>
@@ -48,6 +64,9 @@
         <sprite>sprites\spr_highscore_place_position</sprite>
       </sprites>
     </sprites>
+    <sprites name="Options">
+      <sprite>sprites\spr_toggle</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_dark_gray</background>
@@ -57,27 +76,37 @@
     <path>paths\path0</path>
   </paths>
   <scripts name="scripts">
+    <script>scripts\scr_start_timeline.gml</script>
     <script>scripts\scr_damage.gml</script>
     <script>scripts\scr_enemy_create.gml</script>
     <script>scripts\scr_collect.gml</script>
-    <script>scripts\scr_immersion.gml</script>
-    <script>scripts\scr_generate_text.gml</script>
     <script>scripts\scr_checkpoint_next.gml</script>
     <script>scripts\scr_challenge_next.gml</script>
-    <script>scripts\draw_text_outline.gml</script>
-    <script>scripts\game_over.gml</script>
-    <script>scripts\highscore_save_in_json_file.gml</script>
-    <script>scripts\highscore_load_from_json_file.gml</script>
-    <script>scripts\highscore_show.gml</script>
-    <script>scripts\scr_visual_effect.gml</script>
-    <script>scripts\scr_theta.gml</script>
-    <script>scripts\scr_change_speed.gml</script>
-    <script>scripts\scr_speed_max.gml</script>
-    <script>scripts\ds_list_add_map.gml</script>
-    <script>scripts\scr_tail_image_angle.gml</script>
-    <script>scripts\scr_orientation_variables.gml</script>
-    <script>scripts\backspace_function.gml</script>
-    <script>scripts\draw_orientation_indicator_when_outside_view.gml</script>
+    <scripts name="misc">
+      <script>scripts\scr_generate_text.gml</script>
+      <script>scripts\draw_text_outline.gml</script>
+      <script>scripts\scr_immersion.gml</script>
+      <script>scripts\scr_visual_effect.gml</script>
+      <script>scripts\backspace_function.gml</script>
+      <script>scripts\audio_play_sound_if_not_muted.gml</script>
+      <script>scripts\set_alarm_for_next_song.gml</script>
+    </scripts>
+    <scripts name="game_over_highscore">
+      <script>scripts\game_over.gml</script>
+      <script>scripts\highscore_save_in_json_file.gml</script>
+      <script>scripts\highscore_load_from_json_file.gml</script>
+      <script>scripts\highscore_show.gml</script>
+      <script>scripts\show_debug_message_json.gml</script>
+      <script>scripts\ds_list_add_map.gml</script>
+    </scripts>
+    <scripts name="angle/speed">
+      <script>scripts\scr_theta.gml</script>
+      <script>scripts\scr_change_speed.gml</script>
+      <script>scripts\scr_tail_image_angle.gml</script>
+      <script>scripts\scr_speed_max.gml</script>
+      <script>scripts\draw_orientation_indicator_when_outside_view.gml</script>
+      <script>scripts\scr_orientation_variables.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_arial_16</font>
@@ -99,6 +128,7 @@
     </objects>
     <objects name="Controllers">
       <object>objects\game_ctrl</object>
+      <object>objects\soundtrack_ctrl</object>
       <object>objects\controller_level1</object>
       <object>objects\achievement_ctrl</object>
       <object>objects\highscore_controller</object>
@@ -135,8 +165,10 @@
       <object>objects\obj_menu_egg</object>
       <object>objects\obj_menu_button_parent</object>
       <object>objects\obj_menu_button_start</object>
-      <object>objects\obj_menu_button_quit</object>
+      <object>objects\obj_menu_button_menu</object>
+      <object>objects\obj_menu_button_options</object>
       <object>objects\obj_menu_button_highscores</object>
+      <object>objects\obj_menu_button_quit</object>
       <objects name="highscore_room">
         <object>objects\obj_highscore_place_position</object>
         <object>objects\obj_highscore_place_name</object>
@@ -144,12 +176,16 @@
         <object>objects\obj_highscore_place_date</object>
       </objects>
     </objects>
+    <objects name="Options">
+      <object>objects\obj_toggle_sounds</object>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\tl_level1</timeline>
   </timelines>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
+    <room>rooms\rm_options</room>
     <room>rooms\rm_arena</room>
     <room>rooms\rm_boss</room>
     <room>rooms\rm_highscores</room>
