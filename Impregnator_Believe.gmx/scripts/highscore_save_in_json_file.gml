@@ -12,7 +12,8 @@ var date = date_year + "-" + date_month + "-" + date_day + " " + date_hour + ":"
 var existence = global.ingame_time;
 var points = global.points;
 var challenges_count = global.challenges_count;
-global.total_score = existence + points*2 + challenges_count*3;
+var achievement_points = achievement_ctrl.achievement_points;
+global.total_score = existence + points*2 + challenges_count*3 + achievement_points;
 
 //this_highscore key/values
 var this_highscore = ds_map_create();
@@ -23,17 +24,13 @@ ds_map_add(this_highscore,"challenges",string(challenges_count));
 ds_map_add(this_highscore,"date",date);
 
 //cuvanje gornjig podataka
-if (!instance_exists(obj_highscore_this)){
-    instance_create(0,0,obj_highscore_this);
-}
+instance_create_unique(0,0,obj_highscore_this);
 obj_highscore_this.this_highscore = this_highscore;
 
 //unosenje imena
+keyboard = instance_create_unique(0,0,keyboard_ctrl);
+keyboard.name_input_active = true;
 
-if (!instance_exists(keyboard_ctrl)){
-    keyboard = instance_create(0,0,keyboard_ctrl);
-    keyboard.name_input_active = true;
-}
 
 
 

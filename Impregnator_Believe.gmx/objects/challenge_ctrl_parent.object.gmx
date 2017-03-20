@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gui_text = "";
+            <string>//gui_text = "";
+
+text_box = instance_create((view_xview[1]+view_wview[1])/2,(view_yview[1]+view_hview[1])/2,obj_new_challenge_text_box);
+text_box.text = text_for_box;
 </string>
           </argument>
         </arguments>

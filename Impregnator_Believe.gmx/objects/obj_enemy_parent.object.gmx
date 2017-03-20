@@ -33,8 +33,9 @@ self_destroy = false; //destruction in progress?
 destroy_color = c_purple;
 destroy_duration = 1;
 destroy_dimensions = 0;
+main_color = destroy_color;
 
-spd = 3;
+spd = 2 + 1*game_ctrl.difficulty;
 scr_orientation_variables();
 
 indicator_x = 0;
@@ -90,6 +91,7 @@ indicator_subimg = 1;
 if (place_meeting(x,y,obj_sperm)){
     collided = 1;
     instance_destroy();
+    audio_play_sound_if_not_muted(snd_blob,10,0);
 }else{
     collided = 0;
 }
@@ -127,7 +129,7 @@ if (self_destroy) instance_destroy();
             <string>if (self_destroy == false){
     draw_self();
 
-    draw_orientation_indicator_when_outside_view();
+    draw_orientation_indicator_when_outside_view(main_color);
 }
 </string>
           </argument>

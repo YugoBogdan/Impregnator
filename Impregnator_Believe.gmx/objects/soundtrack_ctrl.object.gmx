@@ -28,6 +28,8 @@
             <string>///INITIALIZE
 
 sound_on = true;
+volume = 0.5;
+volume_step = 0.075;
 
 audio_falloff_set_model(audio_falloff_linear_distance);
 
@@ -37,12 +39,22 @@ if (!audio_is_playing(bgr_music)){
 }*/
 
 //set snd volume
-audio_sound_gain(snd_splash,0.5,0);
-audio_sound_gain(snd_bgr_music_river,0.35,0);
-audio_sound_gain(snd_soundtrack_1,0.5,0);
-audio_sound_gain(snd_soundtrack_2,0.5,0);
-audio_sound_gain(snd_soundtrack_3,0.5,0);
-audio_sound_gain(snd_soundtrack_4,0.5,0);
+audio_sound_gain(snd_bgr_music_river,0.35*volume,0);
+audio_sound_gain(snd_soundtrack_1,0.3*volume,0);
+audio_sound_gain(snd_soundtrack_2,0.3*volume,0);
+audio_sound_gain(snd_soundtrack_3,0.3*volume,0);
+audio_sound_gain(snd_soundtrack_4,0.3*volume,0);
+audio_sound_gain(snd_splash,0.5*volume,0);
+audio_sound_gain(snd_splash_short,0.3*volume,0);
+audio_sound_gain(snd_disappoint,1*volume,0);
+audio_sound_gain(snd_applause_start,0.5*volume,0);
+audio_sound_gain(snd_applause_loop,0.5*volume,0);
+audio_sound_gain(snd_applause_end,0.5*volume,0);
+audio_sound_gain(snd_blob,1*volume,0);
+audio_sound_gain(snd_coin,0.5*volume,0);
+audio_sound_gain(snd_hooray_noncomercial,0.7*volume,0);
+
+//audio_set_master_gain(0,0); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 soundtrack_list = ds_list_create();
 var song_1 = snd_soundtrack_1;
@@ -51,8 +63,8 @@ var song_3 = snd_soundtrack_3;
 var song_4 = snd_soundtrack_4;
 ds_list_add(soundtrack_list,song_1,song_2,song_3,song_4);
 
-var current_soundtrack = ds_list_find_value(soundtrack_list,irandom(ds_list_size(soundtrack_list)));
-
+var current_soundtrack = snd_soundtrack_1;//ds_list_find_value(soundtrack_list,irandom(ds_list_size(soundtrack_list)));
+//error if up line random
 if (!audio_is_playing(current_soundtrack)){
     audio_play_sound(current_soundtrack,10,0);
 }
@@ -108,6 +120,56 @@ set_alarm_for_next_song(current_soundtrack,1);
           <argument>
             <kind>1</kind>
             <string>audio_play_sound(snd_hooray_noncomercial,10,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="109">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>volume -= volume_step;
+if (volume &lt; 0) volume = 0;
+audio_set_master_gain(0,volume);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="107">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>volume += volume_step;
+if (volume &gt; 1) volume = 1;
+audio_set_master_gain(0,volume);
 </string>
           </argument>
         </arguments>

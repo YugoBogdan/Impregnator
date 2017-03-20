@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>challenge_ctrl_parent</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_enemy_create('top',obj_boss);
-
-points_worth = 10;
+            <string>instance_create_unique(room_width,0,obj_condom);
 </string>
           </argument>
         </arguments>
@@ -50,31 +48,7 @@ points_worth = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scr_challenge_next(points_worth);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>gui_text = "Just: " + string(floor(obj_boss.destruction_timer/room_speed+0.99)) + " more!";
-event_inherited();
+            <string>scr_challenge_next(5);
 </string>
           </argument>
         </arguments>

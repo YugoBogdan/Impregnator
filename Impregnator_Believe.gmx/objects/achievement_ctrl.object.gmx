@@ -25,12 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>achievement_points_10 = false;
+            <string>achievement_points = 0;
+
+achievement_points_10 = false;
 achievement_points_25 = false;
 achievement_points_50 = false;
 achievement_points_69 = false;
 achievement_time_20 = false;
 achievement_time_69 = false;
+achievement_time_120 = false;
+achievement_tail_1 = false;
+achievement_tail_3 = false;
+achievement_tail_6 = false;
+gathered_with_tail_counter = 0;
 </string>
           </argument>
         </arguments>
@@ -57,59 +64,77 @@ achievement_time_69 = false;
 if (achievement_points_10 == false &amp;&amp; global.points &gt;= 10)
 {
     achievement_points_10 = true;
-    achievement_points_text = scr_generate_text("GOOD JOB BOI, 10 FOKIN PTS!",0,60,room_width/2,room_height/2);
+    achievement_points_text = "First 10 points!";
+    create_achievement_text_box(achievement_points_text);
+    achievement_points += 5;
 }
 else if (achievement_points_25 == false &amp;&amp; global.points &gt;= 25)
 {
     achievement_points_25 = true;
-    achievement_points_text = scr_generate_text("OU BOI, 25 PTS!",0,60,room_width/2,room_height/2);
+    achievement_points_text = "OU BOI, 25 PTS!";
+    create_achievement_text_box(achievement_points_text);
+    achievement_points += 10;
 }
 else if (achievement_points_50 == false &amp;&amp; global.points &gt;= 50)
 {
     achievement_points_50 = true;
-    achievement_points_text = scr_generate_text("MAN MAN, 50 PTS! INSANE!",0,60,room_width/2,room_height/2);
+    achievement_points_text = "MAN MAN, 50 PTS! INSANE!";
+    create_achievement_text_box(achievement_points_text);
+    achievement_points += 15;
 }
 else if (achievement_points_69 == false &amp;&amp; global.points &gt;= 69)
 {
     achievement_points_69 = true;
-    achievement_points_text = scr_generate_text("69 POINTS! I see what you did there ;)",0,60,room_width/2,room_height/2);
+    achievement_points_text = "69 POINTS! I see what you did there ;)";
+    create_achievement_text_box(achievement_points_text);
+    achievement_points += 20;
 }
 
-//SECONDS
+//TIME
 
 if (achievement_time_20 == false &amp;&amp; global.ingame_time == 20)
 {
     achievement_time_20 = true;
-    achievement_time_text = scr_generate_text("20 SECONDS INGAME, GOOD!",0,60,room_width/2,room_height/2);
+    achievement_time_text = "20 SECONDS INGAME!";
+    create_achievement_text_box(achievement_time_text);
+    achievement_points += 5;
 }
 else if (achievement_time_69 == false &amp;&amp; global.ingame_time == 69)
 {
     achievement_time_69 = true;
-    achievement_time_text = scr_generate_text("69 seconds! Oh, dirty boi...",0,60,room_width/2,room_height/2);
+    achievement_time_text = "69 seconds! Oh, dirty boi...";
+    create_achievement_text_box(achievement_time_text);
+    achievement_points += 15;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//draw_text_outline(room_width/2, room_height/2, "text", c_red, c_purple, fa_center, fa_middle, fnt_arial_16);
+else if (achievement_time_120 == false &amp;&amp; global.ingame_time == 120)
+{
+    achievement_time_120 = true;
+    achievement_time_text = "120 seconds?! Don't cheat!";
+    create_achievement_text_box(achievement_time_text);
+    achievement_points += 25;
+}
+
+if (achievement_tail_1 == false &amp;&amp; gathered_with_tail_counter == 1)
+{
+    achievement_tail_1 = true;
+    achievement_tail_text = "Got it with tail? NICE!";
+    create_achievement_text_box(achievement_tail_text);
+    achievement_points += 5;
+}
+else if (achievement_tail_3 == false &amp;&amp; gathered_with_tail_counter == 3)
+{
+    achievement_tail_3 = true;
+    achievement_tail_text = "3 in a row!? EXTRAORDINARY!";
+    create_achievement_text_box(achievement_tail_text);
+    achievement_points += 10;
+}
+else if (achievement_tail_6 == false &amp;&amp; gathered_with_tail_counter == 6)
+{
+    achievement_tail_6 = true;
+    achievement_tail_text = "6 IN A ROW!? TREMENDOUS!";
+    create_achievement_text_box(achievement_tail_text);
+    achievement_points += 20;
+}
 </string>
           </argument>
         </arguments>

@@ -29,16 +29,15 @@
 
 image_speed = 0.5;
 
-spd = 4;
+spd = 4+2*game_ctrl.difficulty;
 scr_orientation_variables();
 
-destruction_timer = 16 * room_speed;
 shoot_loop_timer = 70;
-shoot_ammo = 3;
-shoot_delay = 4;
+shoot_ammo = 3+1*game_ctrl.difficulty;
+shoot_delay = 3;
 shoot_period = shoot_ammo*shoot_delay;
+main_color = c_gray;
 
-alarm[0] = destruction_timer;
 alarm[1] = shoot_loop_timer;
 
 state = 'normal';
@@ -64,8 +63,8 @@ state = 'normal';
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(boss_ctrl)){
-    with(boss_ctrl) instance_destroy();
+            <string>if (instance_exists(challenge_ctrl_boss)){
+    with(challenge_ctrl_boss) instance_destroy();
 }
 
 scr_collect("Good manuveuring boy! (or girl, ofc)",10,60);
@@ -125,7 +124,9 @@ audio_play_sound_at(snd_splash, x, y, 0, 100, 800, 1, false, 5);
           <argument>
             <kind>1</kind>
             <string>///destroy
-instance_destroy();
+if (instance_exists(obj_sperm)){
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -158,11 +159,10 @@ if (place_meeting(x,y,obj_sperm)){
 }
 
 //MOVE
-destruction_timer -= 1;
 if(instance_exists(obj_sperm)){
     move_towards_point(obj_sperm.x,obj_sperm.y,spd);
 }else{
-    move_towards_point(0,0,spd);
+    move_towards_point(-200,-200,spd);
 }
 
 if (collided){

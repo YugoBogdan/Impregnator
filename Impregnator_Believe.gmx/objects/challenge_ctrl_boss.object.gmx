@@ -25,14 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///initialize
+            <string>timer = 16 * room_speed;
+boss_1 = scr_enemy_create('top',obj_boss);
+boss_1.alarm[0] = timer;
 
-points_worth = 5;
+points_worth = 10;
 
-checkpoint_counter = -1;
-checkpoint_max = 5;
-
-scr_checkpoint_next();
+text_for_box = "Survive " + string(floor(timer/room_speed)) + " seconds!"
+event_inherited();
 </string>
           </argument>
         </arguments>
@@ -61,6 +61,29 @@ scr_checkpoint_next();
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>timer -= 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -78,7 +101,7 @@ scr_checkpoint_next();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gui_text = string(checkpoint_counter) + "/" + string(checkpoint_max) + "&lt;3";
+            <string>gui_text = "Just: " + string(floor(timer/room_speed+0.99)) + " more!";
 event_inherited();
 </string>
           </argument>

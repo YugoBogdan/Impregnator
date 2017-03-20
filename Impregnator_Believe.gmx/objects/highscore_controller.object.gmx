@@ -25,43 +25,46 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>highscores = highscore_load_from_json_file();
-highscores_for_gui = highscore_load_from_json_file();
-map_length = ds_map_size(highscores);
-highscore_list_order = ds_list_create();
-
-max_number_of_best_shown = min(10,map_length);
-
-repeat(map_length){
-    best_i = 0;
-    best_total_score = 0;
-    for (var i=1; i&lt;=map_length; i++){
-        skip = false;
-        for (var j=0; j&lt;ds_list_size(highscore_list_order); j++){
-            if (ds_list_find_value(highscore_list_order,j)==string(i)){
-                skip = true;
+            <string>//if(file_exists("highscores.json")){
+    highscores = highscore_load_from_json_file();
+    highscores_for_gui = highscore_load_from_json_file();
+    
+    map_length = ds_map_size(highscores);
+    highscore_list_order = ds_list_create();
+    
+    max_number_of_best_shown = min(10,map_length);
+    
+    repeat(map_length){
+        best_i = 0;
+        best_total_score = 0;
+        for (var i=1; i&lt;=map_length; i++){
+            skip = false;
+            for (var j=0; j&lt;ds_list_size(highscore_list_order); j++){
+                if (ds_list_find_value(highscore_list_order,j)==string(i)){
+                    skip = true;
+                }
             }
-        }
-        if (skip == false){
-            highscore = ds_map_find_value(highscores,string(i));
-            this_total_score = real(ds_map_find_value(highscore,"total_score"));
-            if (this_total_score &gt; best_total_score){
-                best_total_score = this_total_score;
-                best_i = string(i);
+            if (skip == false){
+                highscore = ds_map_find_value(highscores,string(i));
+                this_total_score = real(ds_map_find_value(highscore,"total_score"));
+                if (this_total_score &gt; best_total_score){
+                    best_total_score = this_total_score;
+                    best_i = string(i);
+                }
+                //show_message("i: " + string(i) + "#this_total_score: " + string(this_total_score) + "#best_i: " + best_i + "#best_total_score: " + string(best_total_score));
+            }        
+            if (i==map_length){
+                ds_list_add(highscore_list_order, best_i);
+                //show_message("BEST_I: " + string(best_i));
+                ds_map_delete(highscores,best_i);
+                //show_message("loop finished!");
             }
-            //show_message("i: " + string(i) + "#this_total_score: " + string(this_total_score) + "#best_i: " + best_i + "#best_total_score: " + string(best_total_score));
-        }        
-        if (i==map_length){
-            ds_list_add(highscore_list_order, best_i);
-            //show_message("BEST_I: " + string(best_i));
-            ds_map_delete(highscores,best_i);
-            //show_message("loop finished!");
-        }
-        if (ds_list_size(highscore_list_order) == map_length){
-            exit;
+            if (ds_list_size(highscore_list_order) == map_length){
+                exit;
+            }
         }
     }
-}
+//}
 </string>
           </argument>
         </arguments>
@@ -200,20 +203,22 @@ applause_ended = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (var i = 0; i&lt;max_number_of_best_shown;i++){
-    index = ds_list_find_value(highscore_list_order,i);
-    this_highscore = ds_map_find_value(highscores_for_gui,index);
-    
-    position = i + 1; 
-    name = ds_map_find_value(this_highscore,"name");
-    this_score = string(floor(real(ds_map_find_value(this_highscore,"total_score"))));
-    date = ds_map_find_value(this_highscore,"date");
-    
-    draw_text_outline(obj_highscore_place_position.x,obj_highscore_place_position.y+i*30,position,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
-    draw_text_outline(obj_highscore_place_name.x,obj_highscore_place_name.y+i*30,name,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
-    draw_text_outline(obj_highscore_place_score.x,obj_highscore_place_score.y+i*30,this_score,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
-    draw_text_outline(obj_highscore_place_date.x,obj_highscore_place_date.y+i*30,date,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
-}
+            <string>//if(file_exists("highscores.json")){
+    for (var i = 0; i&lt;max_number_of_best_shown;i++){
+        index = ds_list_find_value(highscore_list_order,i);
+        this_highscore = ds_map_find_value(highscores_for_gui,index);
+        
+        position = i + 1; 
+        name = ds_map_find_value(this_highscore,"name");
+        this_score = string(floor(real(ds_map_find_value(this_highscore,"total_score"))));
+        date = ds_map_find_value(this_highscore,"date");
+        
+        draw_text_outline(obj_highscore_place_position.x,obj_highscore_place_position.y+i*30,position,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
+        draw_text_outline(obj_highscore_place_name.x,obj_highscore_place_name.y+i*30,name,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
+        draw_text_outline(obj_highscore_place_score.x,obj_highscore_place_score.y+i*30,this_score,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
+        draw_text_outline(obj_highscore_place_date.x,obj_highscore_place_date.y+i*30,date,game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_12);
+    }
+//}
 
 
 </string>

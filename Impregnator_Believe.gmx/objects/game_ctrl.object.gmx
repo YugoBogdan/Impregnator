@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///initialize
+difficulty = 0; //every level =&gt; difficulty ++
 first_text = true;
 alarm[0] = 90; // stop drawing text
 
@@ -39,9 +40,8 @@ text_stroke = make_colour_rgb(55,55,55);
 
 last_used_name = "";
 
-if (!instance_exists(soundtrack_ctrl)){
-    instance_create(0,0,soundtrack_ctrl);
-}
+instance_create_unique(0,0,soundtrack_ctrl);
+
 </string>
           </argument>
         </arguments>
@@ -222,6 +222,35 @@ immersion_stop();
         </arguments>
       </action>
     </event>
+    <event eventtype="9" enumb="80">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///PAUSE
+/*if (room_speed != 0){
+    regular_room_speed = room_speed;
+    room_speed = 0;
+}else{
+    room_speed = regular_room_speed;
+}*/   
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="27">
       <action>
         <libid>1</libid>
@@ -239,7 +268,10 @@ immersion_stop();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room != rm_menu) room_goto(rm_menu);
+            <string>if (instance_exists(obj_sperm)){
+    with(obj_sperm) instance_destroy();
+}
+if (room != rm_menu) room_goto(rm_menu);
 </string>
           </argument>
         </arguments>

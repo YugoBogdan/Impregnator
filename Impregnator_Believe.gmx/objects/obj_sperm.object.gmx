@@ -41,10 +41,12 @@ device_tilt_x_max = 0.3;
 device_tilt_y_max = 0.3;
 
 speed_max = scr_speed_max();
+speed_max_initial = speed_max;
 speed_reduction = speed_max/20;//za 2/3 sekunde usporava od 100 do 0 (%)
 
 theta = 0;
 direction_diff_theta = 0;
+draw_fire = false;
 
 image_speed = 0;
 image_index = global.sperm_image;
@@ -56,26 +58,18 @@ state = 'normal-new';
 //immobile
 
 
-if(!instance_exists(obj_tail)){
-    tail = instance_create(x,y,obj_tail)
-}
-if(!instance_exists(obj_camera)){
-    camera = instance_create(x,y,obj_camera)
-}
+tail = instance_create_unique(x,y,obj_tail);
+camera = instance_create_unique(x,y,obj_camera);
 camera_style = 2;
-/*if(!instance_exists(obj_button_left)){
-    left_button = instance_create(x-64,y-64,obj_button_left)
-}
-if(!instance_exists(obj_button_right)){
-    right_button = instance_create(x+64,y-64,obj_button_right)
-}
-if(!instance_exists(obj_button_left_swipe)){
-    left_button_swipe = instance_create(x-64,y+64,obj_button_left_swipe)
-}
-if(!instance_exists(obj_button_right_swipe)){
-    right_button_swipe = instance_create(x+64,y+64,obj_button_right_swipe)
-}*/
 
+/*
+left_button = instance_create_unique(x-64,y-64,obj_button_left)
+right_button = instance_create_unique(x+64,y-64,obj_button_right)
+left_button_swipe = instance_create_unique(x-64,y+64,obj_button_left_swipe)
+right_button_swipe = instance_create_unique(x+64,y+64,obj_button_right_swipe)
+*/
+
+jump = false;
 </string>
           </argument>
         </arguments>
@@ -102,8 +96,36 @@ if(!instance_exists(obj_button_right_swipe)){
 scr_visual_effect(ef_firework,c_orange,45);
 scr_visual_effect(ef_firework,c_red,30);
 
+audio_play_sound_if_not_muted(snd_blob,10,0);
 audio_play_sound_if_not_muted(snd_disappoint,10,0);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///reset sprite
+
+sprite_index = spr_sperm;
+image_index = image_index_current;
+draw_fire = false;
 </string>
           </argument>
         </arguments>
@@ -128,8 +150,9 @@ audio_play_sound_if_not_muted(snd_disappoint,10,0);
             <kind>1</kind>
             <string>///RESET spd_factor
 
-spd_factor = spd_factor_base;
-speed_max = scr_speed_max();
+scr_change_speed(self,'reset');
+
+if (jump) jump = false;
 </string>
           </argument>
         </arguments>
@@ -246,7 +269,7 @@ if (state == 'normal-new'){
     }
 }
 if (!no_input){
-    image_angle = theta;
+    //image_angle = theta;
     //tail.image_angle = direction; //sigurica racunanje tail.image_angle //treba testirati na telefonu pa mozda vratiti ovaj... sumnjam da hoce trebati
     
     //jebeni sat na navijanje, ali simpa izgleda :)
@@ -288,6 +311,10 @@ if (camera_style == 1){
     camera.x = x + lengthdir_x(speed,direction)*5;
     camera.y = y + lengthdir_y(speed,direction)*5;
 }
+
+//if (jump){
+    instance_create(x,y,obj_jump_fire);
+//}
 </string>
           </argument>
         </arguments>
@@ -311,6 +338,59 @@ if (camera_style == 1){
           <argument>
             <kind>4</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+if (draw_fire){
+    draw_sprite(spr_sperm_fire,0,x,y);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!jump){
+    jump = true;
+    direction = theta;
+    scr_change_speed(obj_sperm,1.8,8);
+}
+</string>
           </argument>
         </arguments>
       </action>

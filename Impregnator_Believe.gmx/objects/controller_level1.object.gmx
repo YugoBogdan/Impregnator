@@ -37,23 +37,14 @@ global.challenges_count = 0;
 enemy_limit = 15;
 
 challenge = ds_list_create();
-ds_list_add(challenge,'checkpoint','survival','checkpoint','boss','GG');
+ds_list_add(challenge,'checkpoint','survival','boss','condom','GG');
 current_challenge_number = 0;
 current_challenge_type = ds_list_find_value(challenge,current_challenge_number);
 challenge_up_and_running = false;
 
-if(!instance_exists(input_screen)){
-    instance_create(room_width/2,room_height/2,input_screen);
-}
-if(!instance_exists(finger)){
-    instance_create(0,0,finger);
-}
-if(!instance_exists(achievement_ctrl)){
-    instance_create(0,0,achievement_ctrl);
-}
-/*if(!instance_exists(rm_spd_ctrl)){
-    instance_create(0,0,rm_spd_ctrl);
-}*/
+//instance_create_unique(room_width/2,room_height/2,input_screen);
+//instance_create_unique(0,0,finger);
+instance_create_unique(0,0,achievement_ctrl);
 
 
 
@@ -80,7 +71,9 @@ if(!instance_exists(achievement_ctrl)){
           <argument>
             <kind>1</kind>
             <string>///ingame_time + instance check number
-global.ingame_time += 1/room_speed;
+if (instance_exists(obj_sperm)){
+    global.ingame_time += 1/room_speed;
+}
 
 //instance number check
 
@@ -95,37 +88,45 @@ if (instance_number(obj_enemy_parent) &gt;= enemy_limit){
 if (!challenge_up_and_running){
     switch (current_challenge_type){
         case 'checkpoint':
-        if (!instance_exists(checkpoint_controller)){
-            instance_create(0,0,checkpoint_controller);
+        if (!instance_exists(challenge_ctrl_checkpoint)){
+            instance_create(0,0,challenge_ctrl_checkpoint);
             challenge_up_and_running = true;
             global.challenges_count += 1;
         }
         break;
 
         case 'survival':
-        if (!instance_exists(survival_controller)){
-            instance_create(0,0,survival_controller);
+        if (!instance_exists(challenge_ctrl_survival)){
+            instance_create(0,0,challenge_ctrl_survival);
             challenge_up_and_running = true;
             global.challenges_count += 1;
         }
         break;
         
         case 'boss':
-        if (!instance_exists(boss_ctrl)){
-            instance_create(room_width/2,0,boss_ctrl);
+        if (!instance_exists(challenge_ctrl_boss)){
+            instance_create(room_width/2,0,challenge_ctrl_boss);
             challenge_up_and_running = true;
             global.challenges_count += 1;        
         }
         break;
         
-        case 'GG':
-        show_message("IMPREGNATION COMPLETE" + "#Congratulations! You have beaten the DEMO" + "#We will loop these challenges for now... :)" + "#I hope you've enjoyed it :)");
-        current_challenge_number = -1;
-        scr_challenge_next(20);
+        case 'condom':
+        instance_create_unique(0,0,challenge_ctrl_condom);
+        challenge_up_and_running = true;
+        global.challenges_count += 1; 
         break;
         
+        case 'GG':
+        show_message("IMPREGNATION COMPLETE" + "#Congratulations! You have beaten the DEMO" + "#We will loop these challenges for now... :)" + "#I hope you've enjoyed it :)");
+        add_game_difficulty();
+        current_challenge_number = -1; //reset level
+        //room_goto(rm_track);
+        scr_challenge_next(20);
+        break;
+                
         default:
-        show_message("error");
+        show_message("error in challenge (level ctrl)");
         break;
     }
 }
@@ -151,7 +152,7 @@ if (!challenge_up_and_running){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_outline(20,20,"Existence: " + string(floor(global.ingame_time)),game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_16);
+            <string>draw_text_outline(20,20,"Time: " + string(floor(global.ingame_time)),game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_16);
 draw_text_outline(20,45,"Points: " + string(global.points),game_ctrl.text_fill,game_ctrl.text_stroke,fa_left,fa_top,fnt_arial_16);
 
 //draw_text(room_width/2,50,string("IMPREGNTATE EVERYTHING LITTLE ONE!!!!!!!!!!!!11!!!1"));

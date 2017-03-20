@@ -12,6 +12,7 @@
     <sound>sound\snd_applause_start</sound>
     <sound>sound\snd_applause_loop</sound>
     <sound>sound\snd_applause_end</sound>
+    <sound>sound\snd_blob</sound>
     <sound>sound\snd_coin</sound>
     <sounds name="non_commercial">
       <sound>sound\snd_hooray_noncomercial</sound>
@@ -28,13 +29,18 @@
       <sprite>sprites\spr_enemy_big_damaged</sprite>
       <sprite>sprites\spr_enemy_big</sprite>
       <sprite>sprites\spr_enemy_trosperm</sprite>
+      <sprite>sprites\spr_boss_odl</sprite>
       <sprite>sprites\spr_boss</sprite>
       <sprite>sprites\sprite23</sprite>
+      <sprite>sprites\spr_condom</sprite>
     </sprites>
     <sprites name="Effects">
       <sprite>sprites\spr_defensive_cell_eyes</sprite>
       <sprite>sprites\spr_indicator_enemy</sprite>
+      <sprite>sprites\sprite30</sprite>
       <sprite>sprites\spr_indicator_checkpoint</sprite>
+      <sprite>sprites\spr_achievement_box</sprite>
+      <sprite>sprites\spr_challenge_box</sprite>
     </sprites>
     <sprites name="Powerups">
       <sprite>sprites\spr_sun</sprite>
@@ -43,9 +49,12 @@
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_sperm</sprite>
+      <sprite>sprites\spr_sperm_even_happier</sprite>
+      <sprite>sprites\spr_sperm_fire</sprite>
       <sprite>sprites\spr_sperm_mask</sprite>
       <sprite>sprites\spr_tail_new_shit</sprite>
       <sprite>sprites\spr_tail</sprite>
+      <sprite>sprites\spr_tail_mask</sprite>
     </sprites>
     <sprites name="Auxilliary">
       <sprite>sprites\spr_button_right</sprite>
@@ -76,12 +85,14 @@
     <path>paths\path0</path>
   </paths>
   <scripts name="scripts">
-    <script>scripts\scr_start_timeline.gml</script>
-    <script>scripts\scr_damage.gml</script>
-    <script>scripts\scr_enemy_create.gml</script>
-    <script>scripts\scr_collect.gml</script>
-    <script>scripts\scr_checkpoint_next.gml</script>
-    <script>scripts\scr_challenge_next.gml</script>
+    <scripts name="challenges">
+      <script>scripts\scr_start_timeline.gml</script>
+      <script>scripts\scr_collect.gml</script>
+      <script>scripts\scr_enemy_create.gml</script>
+      <script>scripts\scr_challenge_next.gml</script>
+      <script>scripts\scr_checkpoint_next.gml</script>
+      <script>scripts\create_achievement_text_box.gml</script>
+    </scripts>
     <scripts name="misc">
       <script>scripts\scr_generate_text.gml</script>
       <script>scripts\draw_text_outline.gml</script>
@@ -90,9 +101,12 @@
       <script>scripts\backspace_function.gml</script>
       <script>scripts\audio_play_sound_if_not_muted.gml</script>
       <script>scripts\set_alarm_for_next_song.gml</script>
+      <script>scripts\instance_create_unique.gml</script>
+      <script>scripts\scr_damage.gml</script>
     </scripts>
     <scripts name="game_over_highscore">
       <script>scripts\game_over.gml</script>
+      <script>scripts\add_game_difficulty.gml</script>
       <script>scripts\highscore_save_in_json_file.gml</script>
       <script>scripts\highscore_load_from_json_file.gml</script>
       <script>scripts\highscore_show.gml</script>
@@ -102,8 +116,8 @@
     <scripts name="angle/speed">
       <script>scripts\scr_theta.gml</script>
       <script>scripts\scr_change_speed.gml</script>
-      <script>scripts\scr_tail_image_angle.gml</script>
       <script>scripts\scr_speed_max.gml</script>
+      <script>scripts\scr_tail_image_angle.gml</script>
       <script>scripts\draw_orientation_indicator_when_outside_view.gml</script>
       <script>scripts\scr_orientation_variables.gml</script>
     </scripts>
@@ -117,9 +131,10 @@
       <object>objects\obj_enemy_parent</object>
       <object>objects\obj_enemy_trosperm</object>
       <object>objects\obj_defensive_cell</object>
+      <object>objects\obj_enemy_tail</object>
       <object>objects\obj_enemy_big</object>
       <object>objects\obj_boss</object>
-      <object>objects\obj_enemy_tail</object>
+      <object>objects\obj_condom</object>
     </objects>
     <objects name="Effects">
       <object>objects\obj_immersion</object>
@@ -134,12 +149,15 @@
       <object>objects\highscore_controller</object>
       <object>objects\obj_highscore_this</object>
       <object>objects\keyboard_ctrl</object>
-      <object>objects\rm_spd_ctrl</object>
+      <object>objects\options_room_ctrl</object>
       <objects name="challenges">
         <object>objects\challenge_ctrl_parent</object>
-        <object>objects\boss_ctrl</object>
-        <object>objects\survival_controller</object>
-        <object>objects\checkpoint_controller</object>
+        <object>objects\challenge_ctrl_checkpoint</object>
+        <object>objects\challenge_ctrl_survival</object>
+        <object>objects\challenge_ctrl_boss</object>
+        <object>objects\challenge_ctrl_condom</object>
+        <object>objects\obj_new_challenge_text_box</object>
+        <object>objects\obj_new_achievement_text_box</object>
       </objects>
     </objects>
     <objects name="Player">
@@ -147,11 +165,13 @@
       <object>objects\obj_tail</object>
       <object>objects\obj_sperm_menu</object>
       <object>objects\obj_camera</object>
+      <object>objects\obj_jump_fire</object>
     </objects>
     <objects name="Powerups">
       <object>objects\obj_powerup_parent</object>
       <object>objects\obj_sun</object>
       <object>objects\obj_checkpoint</object>
+      <object>objects\obj_powerup_invincible</object>
     </objects>
     <objects name="Auxilliary">
       <object>objects\obj_button_left</object>
@@ -187,8 +207,8 @@
     <room>rooms\rm_menu</room>
     <room>rooms\rm_options</room>
     <room>rooms\rm_arena</room>
-    <room>rooms\rm_boss</room>
     <room>rooms\rm_highscores</room>
+    <room>rooms\rm_track</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

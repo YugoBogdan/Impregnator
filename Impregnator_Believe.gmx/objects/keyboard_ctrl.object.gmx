@@ -124,12 +124,13 @@ if (done == true){
           <argument>
             <kind>1</kind>
             <string>//if (name_input_active == true){
-    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2,"PLEASE ENTER YOUR NAME:",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
-    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2+30,string(name),game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_16);
-    draw_text_outline(view_xview[1] + view_wview[1]/2,view_hview[1]/2+60,"(press ENTER when finished)",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
 
+var x_position = view_xview[1] + view_wview[1]/2;
+var y_position = view_yview[1] + view_hview[1]/2;
 
-
+draw_text_outline(x_position,y_position-30,"PLEASE ENTER YOUR NAME:",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
+draw_text_outline(x_position,y_position,string(name),game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_16);
+draw_text_outline(x_position,y_position+30,"(press ENTER when finished)",game_ctrl.text_fill,game_ctrl.text_stroke,fa_center,fa_middle,fnt_arial_12);
 
 //}
 </string>

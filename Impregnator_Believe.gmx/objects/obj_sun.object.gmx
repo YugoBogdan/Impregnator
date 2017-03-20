@@ -41,6 +41,7 @@ orientation = irandom(360);
 motion_set(orientation,spd);
 
 slowing = false;
+effect_duration = 90;
 </string>
           </argument>
         </arguments>
@@ -63,12 +64,21 @@ slowing = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///scr_collect AND create another one
+            <string>///destroy event
 
 if (destroy_event){
     if (collide){
+        scr_change_speed(obj_sperm,1.2,effect_duration);
         scr_collect("Smooth!",1,1*room_speed);
-        scr_visual_effect(ef_spark,c_white,30)
+        scr_visual_effect(ef_spark,c_white,30);
+        audio_play_sound_if_not_muted(snd_splash_short,5,0);
+        with(obj_sperm){
+            image_index_current = image_index; 
+            sprite_index = spr_sperm_even_happier;
+            image_index = image_index_current;
+            draw_fire = true;
+            alarm[2] = other.effect_duration; //reset sprite and draw_fire
+        }
     }
     
     //create another one
@@ -76,8 +86,6 @@ if (destroy_event){
         scr_enemy_create(position,obj_sun);
     }
 }
-
-audio_play_sound_if_not_muted(snd_splash_short,5,0);
 </string>
           </argument>
         </arguments>
@@ -121,13 +129,10 @@ if (place_meeting(x,y,obj_sperm) ||
     collide = 0;
 }
 
-
 //COLLECT
 if (collide){
-    scr_change_speed(obj_sperm,1.2,90);
     instance_destroy();
 }
-
 
 //slowing
 if (slowing){

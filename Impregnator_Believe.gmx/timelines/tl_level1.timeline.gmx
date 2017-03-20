@@ -69,7 +69,7 @@ switch(side){
 }
 
 var object;
-if (global.timeline_loop_counter % 9 == 0){
+if (global.timeline_loop_counter % 8 == 0){
     object = obj_sun;
 }else if (global.timeline_loop_counter % 4 == 0){
     object = obj_enemy_big;

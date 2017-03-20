@@ -54,6 +54,8 @@ if (os_type == os_windows
     
     }else if(x_is_positive && y_is_positive){
         theta = radtodeg(arctan(abs(x_spd_aux)/abs(y_spd_aux))) +270;
+    }else{
+        theta = 0;
     }
 }
 

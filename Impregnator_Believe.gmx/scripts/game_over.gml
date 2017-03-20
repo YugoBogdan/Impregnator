@@ -8,6 +8,7 @@ if (!game_ctrl.cheats){
         }
     }
     
+    game_ctrl.difficulty = 0;
     highscore_save_in_json_file();
     
     //room_goto(rm_menu);

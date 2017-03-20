@@ -31,6 +31,8 @@ event_inherited();
 
 image_speed = 0;
 state = 'normal';
+self_destroy_in_process = false;
+main_color = c_red;
 </string>
           </argument>
         </arguments>
@@ -47,26 +49,54 @@ state = 'normal';
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
             <string>if (state == 'normal'){
-    if (place_meeting(x,y,obj_sperm) ||
+    
+    if (!place_meeting(x,y,obj_sperm) &amp;&amp;
+        !place_meeting(x,y,obj_tail))
+    {
+        collision_sperm = false;
+        collision_tail = false;
+    }
+    else if (place_meeting(x,y,obj_sperm) &amp;&amp;
         place_meeting(x,y,obj_tail))
+    {
+        collision_sperm = true;
+        collision_tail = true;
+    }
+    else if (place_meeting(x,y,obj_sperm))
+    {
+        collision_sperm = true;
+        collision_tail = false;
+    }
+    else if (place_meeting(x,y,obj_tail))
+    {
+        collision_sperm = false;
+        collision_tail = true;
+    }
+    
+    if (collision_tail &amp;&amp; !collision_sperm){
+        achievement_ctrl.gathered_with_tail_counter ++;
+    }else if (collision_sperm &amp;&amp; !collision_tail){
+        achievement_ctrl.gathered_with_tail_counter = 0;
+    }
+    
+    if (collision_sperm || collision_tail)
     {
         state = 'checked';
         scr_collect("",1,1*room_speed);
-        //image_index = 1;
         scr_checkpoint_next();
         scr_visual_effect(ef_spark,c_red,30);
+        audio_play_sound_if_not_muted(snd_coin,11,0);
+        self_destroy_in_process = true;
         instance_destroy();
-        audio_play_sound(snd_coin,11,0);
     }
 }
-
 </string>
           </argument>
         </arguments>
@@ -89,10 +119,11 @@ state = 'normal';
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-
-draw_orientation_indicator_when_outside_view(spr_indicator_checkpoint);
-
+            <string>if (self_destroy_in_process == false){
+    draw_self();
+    
+    draw_orientation_indicator_when_outside_view(main_color);
+}
 </string>
           </argument>
         </arguments>
