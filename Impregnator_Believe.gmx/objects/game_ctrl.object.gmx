@@ -41,6 +41,7 @@ text_stroke = make_colour_rgb(55,55,55);
 last_used_name = "";
 
 instance_create_unique(0,0,soundtrack_ctrl);
+instance_create_unique(0, 0, highscore_server_controller);
 
 </string>
           </argument>

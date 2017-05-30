@@ -98,6 +98,7 @@ if (done == true){
     }else{
         ds_map_add(obj_highscore_this.this_highscore,"name","SPERMY");
     }
+    highscore_server_controller_send_score(obj_highscore_this.this_highscore);
     obj_highscore_this.alarm[0] = 1;
     game_ctrl.last_used_name = name;
 }

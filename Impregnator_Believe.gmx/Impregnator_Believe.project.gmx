@@ -107,6 +107,7 @@
     <scripts name="game_over_highscore">
       <script>scripts\game_over.gml</script>
       <script>scripts\add_game_difficulty.gml</script>
+      <script>scripts\highscore_server_controller_send_score.gml</script>
       <script>scripts\highscore_save_in_json_file.gml</script>
       <script>scripts\highscore_load_from_json_file.gml</script>
       <script>scripts\highscore_show.gml</script>
@@ -150,6 +151,7 @@
       <object>objects\obj_highscore_this</object>
       <object>objects\keyboard_ctrl</object>
       <object>objects\options_room_ctrl</object>
+      <object>objects\highscore_server_controller</object>
       <objects name="challenges">
         <object>objects\challenge_ctrl_parent</object>
         <object>objects\challenge_ctrl_checkpoint</object>
